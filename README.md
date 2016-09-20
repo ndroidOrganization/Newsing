@@ -1,2 +1,2 @@
 # Newsing
-open source
+open source for android
