@@ -1,8 +1,11 @@
-package com.newsing;
+package com.newsing.mian;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.StringRes;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -11,10 +14,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.newsing.R;
+import com.newsing.basic.BaseFragment;
+import com.newsing.basic.BaseInterface;
+import com.newsing.fragment.beauty.BeautyFragment;
+import com.newsing.fragment.topnews.TopNewsFragment;
+import com.newsing.mian.model.MainModel;
+
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, BaseInterface<String> {
 
     com.newsing.MainGroupBinding binding = null;
+    MainModel model = null;
+
+    BaseFragment beautyFragment = null;
+    BaseFragment topNewsFragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +36,39 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         binding = DataBindingUtil.bind(findViewById(R.id.layout_group));
+        model = new MainModel<>(this);
 
         setUpToolBar();
         setUpDrawerBar();
 
+        setUpFragments();
     }
+
+    private void setUpFragments() {
+        beautyFragment = new BeautyFragment();
+        topNewsFragment = new TopNewsFragment();
+        model.setAdapter(this,beautyFragment,topNewsFragment);
+        setUpTabsAndViewPager(beautyFragment.getTabName(),topNewsFragment.getTabName());
+    }
+
+    private void setUpTabsAndViewPager(String... tabName){
+        binding.mainpagertab.setTabMode(TabLayout.MODE_SCROLLABLE);
+        binding.mianviewpager.setAdapter(model.getAdapter());
+
+        //this func will remove all tabs that has exist and new tab
+        //see open source
+        binding.mainpagertab.setupWithViewPager(binding.mianviewpager);
+
+        //only this way can modify tabs
+        int length = tabName.length;
+        int tabcount = binding.mainpagertab.getTabCount();
+        for(int i =0;i<length && i<tabcount;i++)
+        {
+            binding.mainpagertab.getTabAt(i).setText(tabName[i]);
+        }
+    }
+
+
 
     private void setUpToolBar(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -96,9 +138,23 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+//        super.onSaveInstanceState(outState, outPersistentState);
+    }
+
+    @Override
+    public void onComplete(String result) {
+
+    }
+
+    @Override
+    public void onError(@StringRes int resId) {
+
     }
 }
