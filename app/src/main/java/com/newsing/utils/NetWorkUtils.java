@@ -1,5 +1,9 @@
 package com.newsing.utils;
 
+import android.app.Application;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.Nullable;
 
 import java.io.IOException;
@@ -143,5 +147,14 @@ public class NetWorkUtils {
                 callBack.onComplete(response);
             }
         });
+    }
+
+    public static boolean isNetWorkAvailable(Application context){
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo ni = cm.getActiveNetworkInfo();
+        if(ni == null)
+            return false;
+        else
+            return ni.isConnected();
     }
 }

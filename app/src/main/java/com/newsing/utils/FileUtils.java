@@ -9,6 +9,7 @@ import android.support.v4.util.LruCache;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.newsing.NewingApplication;
 import com.newsing.basic.BaseInterface;
 import com.newsing.fragment.beauty.BeautyFragment;
 
@@ -17,6 +18,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.ref.WeakReference;
 
 import okhttp3.Response;
 import rx.Observable;
@@ -84,12 +86,17 @@ public class FileUtils {
      * @param context context
      * @param callback background callback
      */
-    public void DownloadBitmap(final String icUri, final Application context, final BaseInterface<File> callback){
+    public void DownloadBitmap(final String icUri, final WeakReference<Application> context, final BaseInterface<File> callback){
 
-        if(FileUtils.GetBeautyFile(context,icUri).exists())
+        if(FileUtils.GetBeautyFile(context.get(),icUri).exists())
         {
             //file already exist
-            callback.onComplete(FileUtils.GetBeautyFile(context,icUri));
+            callback.onComplete(FileUtils.GetBeautyFile(context.get(),icUri));
+            return ;
+        }
+
+        if(!NetWorkUtils.isNetWorkAvailable(NewingApplication.getInstance()))
+        {
             return ;
         }
         //first request the bitmap inputStream
@@ -101,22 +108,29 @@ public class FileUtils {
                     subscriber.onNext(response.body().byteStream());
                     subscriber.onCompleted();
                 } catch (IOException e) {
-                    subscriber.onError(e);
-                    //callback.onError();
+//                    subscriber.onError(e);
+                    //network unavailable
+                    e.printStackTrace();
                 }
             }
+
         }).map(new Func1<InputStream,Bitmap>() {//this decode bitmap
             @Override
             public Bitmap call(InputStream inputStream) {
-                return BitmapFactory.decodeStream(inputStream);
+                if(inputStream != null)
+                    return BitmapFactory.decodeStream(inputStream);
+                else
+                    return null;
             }
         }).map(new Func1<Bitmap, File>() {//this write to private file dir
             @Override
             public File call(Bitmap bitmap) {
                 File file = null;
                 try {
+                    if(context.get() == null)
+                        return null;
                     if(bitmap != null) {
-                        file = FileUtils.GetBeautyFile(context, icUri);
+                        file = FileUtils.GetBeautyFile(context.get(), icUri);
                         FileOutputStream os = new FileOutputStream(file);
                         bitmap.compress(Bitmap.CompressFormat.PNG, 50, os);
                         os.flush();
@@ -136,7 +150,8 @@ public class FileUtils {
                 .subscribe(new Action1<File>() {//this notify complete
                     @Override
                     public void call(File file) {
-                        callback.onComplete(file);
+                        if(callback != null)
+                            callback.onComplete(file);
                     }
                 });
     }

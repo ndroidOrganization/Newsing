@@ -20,7 +20,7 @@ public class NewingApplication extends Application {
         mApplication = this;
         FileUtils.checkFileDir(this);
 
-//        Thread.setDefaultUncaughtExceptionHandler(new CrashHandler());
+        Thread.setDefaultUncaughtExceptionHandler(new CrashHandler());
     }
 
     public static Application getInstance(){

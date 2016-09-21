@@ -13,7 +13,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.newsing.MainGroupBinding;
 import com.newsing.R;
 import com.newsing.basic.BaseFragment;
 import com.newsing.basic.BaseInterface;
@@ -24,7 +26,7 @@ import com.newsing.mian.model.MainModel;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, BaseInterface<String> {
 
-    com.newsing.MainGroupBinding binding = null;
+    MainGroupBinding binding = null;
     MainModel model = null;
 
     BaseFragment beautyFragment = null;
@@ -35,7 +37,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        binding = DataBindingUtil.bind(findViewById(R.id.layout_group));
+        View groupView = findViewById(R.id.layout_group);
+        binding = DataBindingUtil.bind(groupView);
         model = new MainModel<>(this);
 
         setUpToolBar();

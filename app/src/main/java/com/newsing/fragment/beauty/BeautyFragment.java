@@ -13,9 +13,9 @@ import android.view.ViewGroup;
 import com.newsing.R;
 import com.newsing.basic.BaseFragment;
 import com.newsing.basic.BaseInterface;
-import com.newsing.utils.FileUtils;
 
 import java.io.File;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,7 +70,7 @@ public class BeautyFragment extends BaseFragment implements BaseInterface<File>{
     }
 
     private void request(String uri){
-        adapter.getFileUtils().DownloadBitmap(uri,getActivity().getApplication(),this);
+        adapter.getFileUtils().DownloadBitmap(uri,new WeakReference<>(getActivity().getApplication()),this);
     }
 
     @Override
