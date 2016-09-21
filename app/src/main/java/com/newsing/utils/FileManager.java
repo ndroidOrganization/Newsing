@@ -7,14 +7,11 @@ import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.support.v4.util.LruCache;
 import android.util.Log;
-import android.widget.ImageView;
 
 import com.newsing.NewingApplication;
 import com.newsing.basic.BaseInterface;
-import com.newsing.fragment.beauty.BeautyFragment;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,11 +29,12 @@ import rx.schedulers.Schedulers;
  * Created by qzzhu on 16-9-21.
  */
 
-public class FileUtils {
+public class FileManager {
     private final static String PrivateDir_Beauty = "beauty";
 
-    LruCache<String, Bitmap> mMemoryCache = null;
-    public FileUtils(Application context){
+    private LruCache<String, Bitmap> mMemoryCache = null;
+    private static FileManager instance = null;
+    private FileManager(Application context){
         //获取系统分配给每个应用程序的最大内存，每个应用系统分配32M
         int maxMemory = (int) Runtime.getRuntime().maxMemory();
         int mCacheSize = maxMemory / 8;
@@ -48,6 +46,20 @@ public class FileUtils {
                 return value.getRowBytes() * value.getHeight();
             }
         };
+    }
+
+    public static FileManager getInstance(Application context) {
+        if (instance == null)
+        {
+            synchronized (FileManager.class)
+            {
+                if(instance == null)
+                {
+                    instance = new FileManager(context);
+                }
+            }
+        }
+        return instance;
     }
 
     //默认初始化检查一次是否存在该文件夹
@@ -88,10 +100,10 @@ public class FileUtils {
      */
     public void DownloadBitmap(final String icUri, final WeakReference<Application> context, final BaseInterface<File> callback){
 
-        if(FileUtils.GetBeautyFile(context.get(),icUri).exists())
+        if(FileManager.GetBeautyFile(context.get(),icUri).exists())
         {
             //file already exist
-            callback.onComplete(FileUtils.GetBeautyFile(context.get(),icUri));
+            callback.onComplete(FileManager.GetBeautyFile(context.get(),icUri));
             return ;
         }
 
@@ -130,7 +142,7 @@ public class FileUtils {
                     if(context.get() == null)
                         return null;
                     if(bitmap != null) {
-                        file = FileUtils.GetBeautyFile(context.get(), icUri);
+                        file = FileManager.GetBeautyFile(context.get(), icUri);
                         FileOutputStream os = new FileOutputStream(file);
                         bitmap.compress(Bitmap.CompressFormat.PNG, 50, os);
                         os.flush();
@@ -156,7 +168,7 @@ public class FileUtils {
                 });
     }
 
-    public Bitmap getImageFromCache(String filePath){
+    private Bitmap getImageFromCache(String filePath){
         if(filePath == null)
             return null;
         else
@@ -168,7 +180,7 @@ public class FileUtils {
      * @param filePath path
      * @return the height that ImageView can take
      */
-    public Bitmap loadImageFromFile(int width , String filePath){
+    private Bitmap loadImageFromFile(int width , String filePath){
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         Bitmap map = null;
@@ -178,10 +190,9 @@ public class FileUtils {
         options.outWidth = width;
         options.inJustDecodeBounds = false;
         map = BitmapFactory.decodeFile(filePath,options);
-        if(filePath != null && map != null)
-            synchronized (mMemoryCache) {
-                mMemoryCache.put(new File(filePath).getName(), map);
-            }
+        if(filePath != null && map != null) {
+            mMemoryCache.put(new File(filePath).getName(), map);
+        }
         return map;
     }
 

@@ -5,9 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.newsing.NewingApplication;
 import com.newsing.R;
-import com.newsing.utils.FileUtils;
 
 import java.util.List;
 
@@ -17,15 +15,9 @@ import java.util.List;
  */
 class RecycleItemAdapter extends RecyclerView.Adapter<RecycleItemHolder>{
     private List<ItemModel> datats = null;
-    private FileUtils fileUtils = null;
-
-    public FileUtils getFileUtils() {
-        return fileUtils;
-    }
 
     RecycleItemAdapter(List<ItemModel> datats) {
         this.datats = datats;
-        fileUtils = new FileUtils(NewingApplication.getInstance());
     }
 
     @Override
@@ -36,7 +28,7 @@ class RecycleItemAdapter extends RecyclerView.Adapter<RecycleItemHolder>{
 
     @Override
     public void onBindViewHolder(RecycleItemHolder holder, int position) {
-        holder.bindItem(datats.get(position), fileUtils);
+        holder.bindItem(datats.get(position));
     }
 
     @Override

@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 
 import com.newsing.utils.CrashHandler;
-import com.newsing.utils.FileUtils;
+import com.newsing.utils.FileManager;
 
 /**
  * Created by qzzhu on 16-9-21.
@@ -18,7 +18,7 @@ public class NewingApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mApplication = this;
-        FileUtils.checkFileDir(this);
+        FileManager.checkFileDir(this);
 
         Thread.setDefaultUncaughtExceptionHandler(new CrashHandler());
     }
