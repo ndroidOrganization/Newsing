@@ -1,5 +1,6 @@
 package com.newsing.fragment.beauty;
 
+import android.app.Application;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -69,13 +70,15 @@ public class BeautyFragment extends BaseFragment implements BaseInterface<File>{
     }
 
     private void request(String uri){
-        FileUtils.DownloadBitmap(uri,getActivity().getApplication(),this);
+        adapter.getFileUtils().DownloadBitmap(uri,getActivity().getApplication(),this);
     }
 
     @Override
-    public void onComplete(File result) {
-        datats.add(new ItemModel(result.getPath()));
-        adapter.notifyItemInserted(datats.size());
+    public void onComplete(final File result) {
+        if(result != null){
+            datats.add(new ItemModel(result.getPath()));
+            adapter.notifyItemInserted(datats.size()-1);
+        }
     }
 
     @Override

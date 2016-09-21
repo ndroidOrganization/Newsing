@@ -84,7 +84,7 @@ public class FileUtils {
      * @param context context
      * @param callback background callback
      */
-    public static void DownloadBitmap(final String icUri, final Application context, final BaseInterface<File> callback){
+    public void DownloadBitmap(final String icUri, final Application context, final BaseInterface<File> callback){
 
         if(FileUtils.GetBeautyFile(context,icUri).exists())
         {
@@ -115,11 +115,15 @@ public class FileUtils {
             public File call(Bitmap bitmap) {
                 File file = null;
                 try {
-                    file = FileUtils.GetBeautyFile(context,icUri);
-                    FileOutputStream os = new FileOutputStream(file);
-                    bitmap.compress(Bitmap.CompressFormat.PNG,50,os);
-                    os.close();
-                    bitmap.recycle();
+                    if(bitmap != null) {
+                        file = FileUtils.GetBeautyFile(context, icUri);
+                        FileOutputStream os = new FileOutputStream(file);
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 50, os);
+                        os.flush();
+                        os.close();
+//                        bitmap.recycle();
+                        mMemoryCache.put(file.getName(),bitmap);
+                    }
                 } catch (Exception e) {
                     //file not found
                     //callback.onError();
@@ -138,7 +142,10 @@ public class FileUtils {
     }
 
     public Bitmap getImageFromCache(String filePath){
-        return mMemoryCache.get(new File(filePath).getName());
+        if(filePath == null)
+            return null;
+        else
+            return mMemoryCache.get(new File(filePath).getName());
     }
 
     /**
@@ -156,7 +163,10 @@ public class FileUtils {
         options.outWidth = width;
         options.inJustDecodeBounds = false;
         map = BitmapFactory.decodeFile(filePath,options);
-        mMemoryCache.put(new File(filePath).getName(),map);
+        if(filePath != null && map != null)
+            synchronized (mMemoryCache) {
+                mMemoryCache.put(new File(filePath).getName(), map);
+            }
         return map;
     }
 

@@ -19,6 +19,10 @@ class RecycleItemAdapter extends RecyclerView.Adapter<RecycleItemHolder>{
     private List<ItemModel> datats = null;
     private FileUtils fileUtils = null;
 
+    public FileUtils getFileUtils() {
+        return fileUtils;
+    }
+
     RecycleItemAdapter(List<ItemModel> datats) {
         this.datats = datats;
         fileUtils = new FileUtils(NewingApplication.getInstance());

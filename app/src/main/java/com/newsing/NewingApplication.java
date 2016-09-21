@@ -1,15 +1,17 @@
 package com.newsing;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 
+import com.newsing.utils.CrashHandler;
 import com.newsing.utils.FileUtils;
 
 /**
  * Created by qzzhu on 16-9-21.
  */
-
 public class NewingApplication extends Application {
 
+    @SuppressLint("StaticFieldLeak")
     private static Application mApplication;
 
     @Override
@@ -17,6 +19,8 @@ public class NewingApplication extends Application {
         super.onCreate();
         mApplication = this;
         FileUtils.checkFileDir(this);
+
+//        Thread.setDefaultUncaughtExceptionHandler(new CrashHandler());
     }
 
     public static Application getInstance(){

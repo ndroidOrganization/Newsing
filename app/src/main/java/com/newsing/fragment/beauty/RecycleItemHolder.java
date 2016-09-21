@@ -32,18 +32,25 @@ class RecycleItemHolder extends RecyclerView.ViewHolder {
         if(datasHolder.getPicpath() != null){
             String filePath = datasHolder.getFilePath(NewingApplication.getInstance());
 
+            Log.i("filepath",":"+filePath);
             Bitmap map = cachedMap.loadBitmap(width,filePath);
 
-            //set layout params
-            ViewGroup.LayoutParams layoutParams = itemBinding.getRoot().getLayoutParams();
-            layoutParams.height = map.getHeight();
+            if(map != null)
+            {
+                //set layout params
+                ViewGroup.LayoutParams layoutParams = itemBinding.getRoot().getLayoutParams();
+                layoutParams.height = map.getHeight();
 
-            //set image
-            itemBinding.beautyItem.setImageBitmap(map);
+                //set image
+                itemBinding.beautyItem.setImageBitmap(map);
 
-            //set click listener
-            itemBinding.getRoot().setTag(datasHolder);
-            itemBinding.getRoot().setOnClickListener(clickListener);
+                //set click listener
+                itemBinding.getRoot().setTag(datasHolder);
+                itemBinding.getRoot().setOnClickListener(clickListener);
+            }
+            else{
+                Log.d("map","decode = null");
+            }
 
             //palette
             //ColorUtils.getBitmapColor(itemBinding.getRoot().getContext(),listener);
