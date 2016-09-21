@@ -27,6 +27,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name="com.newsing.fragment.beauty.activity.BeautyDetailActivity"
+            android:screenOrientation="portrait"
+            />
     </application>
 
 </manifest>

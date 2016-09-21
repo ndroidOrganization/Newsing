@@ -28,7 +28,6 @@ import rx.schedulers.Schedulers;
 /**
  * Created by qzzhu on 16-9-21.
  */
-
 public class FileManager {
     private final static String PrivateDir_Beauty = "beauty";
 
