@@ -16,8 +16,7 @@ public class TopNewsFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_test,null);
-        return view;
+        return null;
     }
 
     public String getTabName(){
