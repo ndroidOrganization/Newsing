@@ -1,7 +1,12 @@
 package com.newsing.fragment.beauty;
 
+import android.app.Application;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -10,28 +15,38 @@ import android.view.ViewGroup;
 
 import com.newsing.R;
 import com.newsing.basic.BaseFragment;
+import com.newsing.basic.BaseInterface;
+import com.newsing.utils.FileUtils;
+import com.newsing.utils.NetWorkUtils;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Response;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2016/9/20 0020.
  */
-public class BeautyFragment extends BaseFragment {
+public class BeautyFragment extends BaseFragment implements BaseInterface<File>{
 
     private final static int COLUMNCOUNT = 2;
 
     List<ItemModel> datats = new ArrayList<>();
+    RecycleItemAdapter adapter = null;
 
     public BeautyFragment(){
         //request picture
 
-
-        //test
-        for(int i = 0;i<18;i++)
-        {
-            datats.add(new ItemModel());
-        }
     }
 
     @Nullable
@@ -40,11 +55,38 @@ public class BeautyFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_beauty,container,false);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.beauty_recycle);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(COLUMNCOUNT,StaggeredGridLayoutManager.VERTICAL));
-        recyclerView.setAdapter(new RecycleItemAdapter(datats));
+        adapter = new RecycleItemAdapter(datats);
+        recyclerView.setAdapter(adapter);
+        requestPics();
         return view;
+    }
+
+    private void requestPics(){
+        //test
+        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJ1fJWJ-IJFrFAAMdgtxozEgAAU-KQNnR7wAAx2a147.jpg");
+        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJ1fJWKCIJlicAALAo_WW1kwAAU-KQNtNYoAAsC7997.jpg");
+        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJlfJWKCINRzqAALQHHEm9jgAAU-KQNqZVYAAtA0983.jpg");
+        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJlfJWJ-IATyqAAKLmDZwFfYAAU-KQNkvAwAAouw067.jpg");
+        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJ1fJWJ-Ib1c5AAKQ7neu_rUAAU-KQNfbm0AApEG253.jpg");
+        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJlfJWJqIWPg3AAL4D9wtdhwAAU-KQHvrNAAAvgn153.jpg");
     }
 
     public String getTabName(){
         return "Beauty";
+    }
+
+    private void request(String uri){
+        FileUtils.DownloadBitmap(uri,getActivity().getApplication(),this);
+    }
+
+    @Override
+    public void onComplete(File result) {
+        datats.add(new ItemModel(result.getPath()));
+        adapter.notifyItemInserted(datats.size());
+    }
+
+    @Override
+    public void onError(@StringRes int resId) {
+
     }
 }

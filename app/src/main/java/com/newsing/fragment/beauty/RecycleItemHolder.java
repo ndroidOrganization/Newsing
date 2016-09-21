@@ -1,6 +1,7 @@
 package com.newsing.fragment.beauty;
 
 import android.databinding.DataBindingUtil;
+import android.graphics.BitmapFactory;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,8 +10,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 import com.newsing.BeautyItemBinding;
-import com.newsing.R;
-import com.newsing.utils.ColorUtils;
+import com.newsing.NewingApplication;
 
 /**
  * Created by qzzhu on 16-9-21.
@@ -25,13 +25,13 @@ class RecycleItemHolder extends RecyclerView.ViewHolder {
     }
 
     void bindItem(ItemModel datasHolder){
-        if(datasHolder.getPic_path() == null){
+        if(datasHolder.getPic_path() != null){
             ViewGroup.LayoutParams layoutParams = itemBinding.getRoot().getLayoutParams();
             layoutParams.height = (int) (200+Math.random()*200);
-            itemBinding.beautyItem.setImageResource(R.drawable.icon_test);
+            itemBinding.beautyItem.setImageBitmap(BitmapFactory.decodeFile(datasHolder.getFilePath(NewingApplication.getInstance())));
             itemBinding.getRoot().setTag(datasHolder);
             itemBinding.getRoot().setOnClickListener(clickListener);
-            ColorUtils.getBitmapColor(itemBinding.getRoot().getContext(),listener);
+            //ColorUtils.getBitmapColor(itemBinding.getRoot().getContext(),listener);
         }
     }
 

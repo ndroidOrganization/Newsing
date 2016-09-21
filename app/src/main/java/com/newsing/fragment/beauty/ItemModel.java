@@ -1,17 +1,26 @@
 package com.newsing.fragment.beauty;
 
+import android.content.Context;
+
+import com.newsing.utils.FileUtils;
+
 /**
  * Created by qzzhu on 16-9-21.
  * this class will hold item data
  */
 class ItemModel {
-    private String pic_path = null;
+    private String picName = null;
 
-    public String getPic_path() {
-        return pic_path;
+    ItemModel(String picName){
+        this.picName = picName;
     }
 
-    public void setPic_path(String pic_path) {
-        this.pic_path = pic_path;
+    String getPic_path() {
+        return picName;
+    }
+
+
+    String getFilePath(Context t){
+        return FileUtils.GetBeautyFile(t,picName).getPath();
     }
 }
