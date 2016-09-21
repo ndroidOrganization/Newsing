@@ -9,18 +9,17 @@ import com.newsing.utils.FileUtils;
  * this class will hold item data
  */
 class ItemModel {
-    private String picName = null;
+    private String picpath = null;
 
-    ItemModel(String picName){
-        this.picName = picName;
+    ItemModel(String picpath){
+        this.picpath = picpath;
     }
 
-    String getPic_path() {
-        return picName;
+    public String getPicpath() {
+        return picpath;
     }
-
 
     String getFilePath(Context t){
-        return FileUtils.GetBeautyFile(t,picName).getPath();
+        return FileUtils.GetBeautyFile(t,picpath).getPath();
     }
 }

@@ -1,6 +1,7 @@
 package com.newsing.fragment.beauty;
 
 import android.databinding.DataBindingUtil;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.newsing.BeautyItemBinding;
 import com.newsing.NewingApplication;
+import com.newsing.utils.FileUtils;
 
 /**
  * Created by qzzhu on 16-9-21.
@@ -18,19 +20,32 @@ import com.newsing.NewingApplication;
  */
 class RecycleItemHolder extends RecyclerView.ViewHolder {
     private BeautyItemBinding itemBinding = null;
+    private int width = 0;
 
     RecycleItemHolder(View itemView) {
         super(itemView);
         itemBinding = DataBindingUtil.bind(itemView);
+        width = itemView.getResources().getDisplayMetrics().widthPixels/ BeautyFragment.COLUMNCOUNT;
     }
 
-    void bindItem(ItemModel datasHolder){
-        if(datasHolder.getPic_path() != null){
+    void bindItem(ItemModel datasHolder,FileUtils cachedMap){
+        if(datasHolder.getPicpath() != null){
+            String filePath = datasHolder.getFilePath(NewingApplication.getInstance());
+
+            Bitmap map = cachedMap.loadBitmap(width,filePath);
+
+            //set layout params
             ViewGroup.LayoutParams layoutParams = itemBinding.getRoot().getLayoutParams();
-            layoutParams.height = (int) (200+Math.random()*200);
-            itemBinding.beautyItem.setImageBitmap(BitmapFactory.decodeFile(datasHolder.getFilePath(NewingApplication.getInstance())));
+            layoutParams.height = map.getHeight();
+
+            //set image
+            itemBinding.beautyItem.setImageBitmap(map);
+
+            //set click listener
             itemBinding.getRoot().setTag(datasHolder);
             itemBinding.getRoot().setOnClickListener(clickListener);
+
+            //palette
             //ColorUtils.getBitmapColor(itemBinding.getRoot().getContext(),listener);
         }
     }

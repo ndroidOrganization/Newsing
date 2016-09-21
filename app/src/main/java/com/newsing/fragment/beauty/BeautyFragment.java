@@ -1,9 +1,5 @@
 package com.newsing.fragment.beauty;
 
-import android.app.Application;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -17,37 +13,20 @@ import com.newsing.R;
 import com.newsing.basic.BaseFragment;
 import com.newsing.basic.BaseInterface;
 import com.newsing.utils.FileUtils;
-import com.newsing.utils.NetWorkUtils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
-import okhttp3.Response;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2016/9/20 0020.
  */
 public class BeautyFragment extends BaseFragment implements BaseInterface<File>{
 
-    private final static int COLUMNCOUNT = 2;
+    public final static int COLUMNCOUNT = 2;
 
     List<ItemModel> datats = new ArrayList<>();
     RecycleItemAdapter adapter = null;
-
-    public BeautyFragment(){
-        //request picture
-
-    }
 
     @Nullable
     @Override
@@ -57,12 +36,26 @@ public class BeautyFragment extends BaseFragment implements BaseInterface<File>{
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(COLUMNCOUNT,StaggeredGridLayoutManager.VERTICAL));
         adapter = new RecycleItemAdapter(datats);
         recyclerView.setAdapter(adapter);
+
         requestPics();
+
         return view;
     }
 
     private void requestPics(){
         //test
+        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJ1fJWJ-IJFrFAAMdgtxozEgAAU-KQNnR7wAAx2a147.jpg");
+        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJ1fJWKCIJlicAALAo_WW1kwAAU-KQNtNYoAAsC7997.jpg");
+        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJlfJWKCINRzqAALQHHEm9jgAAU-KQNqZVYAAtA0983.jpg");
+        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJlfJWJ-IATyqAAKLmDZwFfYAAU-KQNkvAwAAouw067.jpg");
+        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJ1fJWJ-Ib1c5AAKQ7neu_rUAAU-KQNfbm0AApEG253.jpg");
+        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJlfJWJqIWPg3AAL4D9wtdhwAAU-KQHvrNAAAvgn153.jpg");
+        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJ1fJWJ-IJFrFAAMdgtxozEgAAU-KQNnR7wAAx2a147.jpg");
+        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJ1fJWKCIJlicAALAo_WW1kwAAU-KQNtNYoAAsC7997.jpg");
+        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJlfJWKCINRzqAALQHHEm9jgAAU-KQNqZVYAAtA0983.jpg");
+        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJlfJWJ-IATyqAAKLmDZwFfYAAU-KQNkvAwAAouw067.jpg");
+        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJ1fJWJ-Ib1c5AAKQ7neu_rUAAU-KQNfbm0AApEG253.jpg");
+        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJlfJWJqIWPg3AAL4D9wtdhwAAU-KQHvrNAAAvgn153.jpg");
         request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJ1fJWJ-IJFrFAAMdgtxozEgAAU-KQNnR7wAAx2a147.jpg");
         request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJ1fJWKCIJlicAALAo_WW1kwAAU-KQNtNYoAAsC7997.jpg");
         request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJlfJWKCINRzqAALQHHEm9jgAAU-KQNqZVYAAtA0983.jpg");

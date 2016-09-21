@@ -5,9 +5,12 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
+import android.support.v4.util.LruCache;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.newsing.basic.BaseInterface;
+import com.newsing.fragment.beauty.BeautyFragment;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -28,11 +31,26 @@ import rx.schedulers.Schedulers;
  */
 
 public class FileUtils {
-    public final static String PrivateDir_Beauty = "beauty";
+    private final static String PrivateDir_Beauty = "beauty";
 
+    LruCache<String, Bitmap> mMemoryCache = null;
+    public FileUtils(Application context){
+        //获取系统分配给每个应用程序的最大内存，每个应用系统分配32M
+        int maxMemory = (int) Runtime.getRuntime().maxMemory();
+        int mCacheSize = maxMemory / 8;
+        //给LruCache分配1/8 4M
+        mMemoryCache = new LruCache<String, Bitmap>(mCacheSize){
+            //必须重写此方法，来测量Bitmap的大小
+            @Override
+            protected int sizeOf(String key, Bitmap value) {
+                return value.getRowBytes() * value.getHeight();
+            }
+        };
+    }
+
+    //默认初始化检查一次是否存在该文件夹
     public static void checkFileDir(Context context){
-        File privateDir = context.getFilesDir();
-        File beauty = new File(privateDir,PrivateDir_Beauty);
+        File beauty = getBeautyFileDir(context);
         if(!beauty.exists())
         {
             boolean success = beauty.mkdir();
@@ -41,19 +59,31 @@ public class FileUtils {
         }
     }
 
+    /**
+     * 取网络路径的最后/后缀作为文件名
+     * @param context context
+     * @param fileName net path
+     * @return File that has get rid of suffix
+     */
     public static File GetBeautyFile(Context context,String fileName){
         String fname = fileName.substring(fileName.lastIndexOf("/"),fileName.length());
         return new File(getBeautyFileDir(context),fname);
     }
 
     private static File getBeautyFileDir(Context context){
-//        return new File(context.getFilesDir(),PrivateDir_Beauty);
+//      new File(context.getFilesDir(),PrivateDir_Beauty);
         File file = new File(Environment.getExternalStorageDirectory(),PrivateDir_Beauty);
         if(!file.exists())
             file.mkdirs();
         return file;
     }
 
+    /**
+     * downLoad image and write to local file if file not exist
+     * @param icUri request uri
+     * @param context context
+     * @param callback background callback
+     */
     public static void DownloadBitmap(final String icUri, final Application context, final BaseInterface<File> callback){
 
         if(FileUtils.GetBeautyFile(context,icUri).exists())
@@ -105,5 +135,37 @@ public class FileUtils {
                         callback.onComplete(file);
                     }
                 });
+    }
+
+    public Bitmap getImageFromCache(String filePath){
+        return mMemoryCache.get(new File(filePath).getName());
+    }
+
+    /**
+     * scale the image to fit the imageView
+     * @param filePath path
+     * @return the height that ImageView can take
+     */
+    public Bitmap loadImageFromFile(int width , String filePath){
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        Bitmap map = null;
+        map = BitmapFactory.decodeFile(filePath,options);
+        float imageWidth = options.outWidth * 1.0f;
+        options.outHeight = (int) (width *options.outHeight/imageWidth);
+        options.outWidth = width;
+        options.inJustDecodeBounds = false;
+        map = BitmapFactory.decodeFile(filePath,options);
+        mMemoryCache.put(new File(filePath).getName(),map);
+        return map;
+    }
+
+    public Bitmap loadBitmap(int width , String filePath){
+        Bitmap map = getImageFromCache(filePath);
+        if(map == null)
+        {
+            map= loadImageFromFile(width, filePath);
+        }
+        return map;
     }
 }
