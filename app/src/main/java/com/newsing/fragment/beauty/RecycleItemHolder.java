@@ -79,7 +79,7 @@ class RecycleItemHolder extends RecyclerView.ViewHolder {
         public void onGenerated(Palette palette) {
             Palette.Swatch vibrant =palette.getMutedSwatch();
             if(vibrant != null)
-                itemBinding.beautyCard.setCardBackgroundColor(vibrant.getRgb());
+                itemBinding.beautyCard.setBackgroundColor(vibrant.getRgb());
         }
     };
 }
