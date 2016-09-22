@@ -9,6 +9,9 @@ import com.newsing.utils.FileManager;
  * this class will hold item data
  */
 class ItemModel {
+    /**
+     * the image file path
+     */
     private String picpath = null;
 
     ItemModel(String picpath){

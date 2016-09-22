@@ -27,7 +27,7 @@ class RecycleItemHolder extends RecyclerView.ViewHolder {
         width = itemView.getResources().getDisplayMetrics().widthPixels/ BeautyFragment.COLUMNCOUNT;
     }
 
-    void bindItem(ItemModel datasHolder){
+    void bindItem(ItemModel datasHolder, OnClickListener clickListener){
         if(datasHolder.getPicpath() != null){
             String filePath = datasHolder.getFilePath(NewingApplication.getInstance());
 
@@ -49,35 +49,7 @@ class RecycleItemHolder extends RecyclerView.ViewHolder {
             else{
                 Log.d("map","decode = null");
             }
-
-            //palette
-            //ColorUtils.getBitmapColor(itemBinding.getRoot().getContext(),listener);
         }
     }
 
-    private final OnClickListener clickListener= new OnClickListener(){
-
-        @Override
-        public void onClick(View view) {
-            try{
-                ItemModel datasHolder = (ItemModel) view.getTag();
-                if(datasHolder != null)
-                {
-                    //do something
-                }
-            }catch(ClassCastException e)
-            {
-                Log.e("RecycleItemHolder","class case error");
-            }
-        }
-    };
-
-    private final Palette.PaletteAsyncListener listener = new Palette.PaletteAsyncListener() {
-        @Override
-        public void onGenerated(Palette palette) {
-            Palette.Swatch vibrant =palette.getMutedSwatch();
-            if(vibrant != null)
-                itemBinding.beautyCard.setBackgroundColor(vibrant.getRgb());
-        }
-    };
 }

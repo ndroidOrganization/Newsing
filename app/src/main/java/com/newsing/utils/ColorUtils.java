@@ -27,4 +27,17 @@ public class ColorUtils {
     public static void getBitmapColor(Context context,Palette.PaletteAsyncListener listener){
         new Palette.Builder(BitmapFactory.decodeResource(context.getResources(), R.drawable.icon_test)).generate(listener);
     }
+
+    //palette
+    //ColorUtils.getBitmapColor(itemBinding.getRoot().getContext(),listener);
+    private final Palette.PaletteAsyncListener listener = new Palette.PaletteAsyncListener() {
+        @Override
+        public void onGenerated(Palette palette) {
+            Palette.Swatch vibrant =palette.getMutedSwatch();
+            if(vibrant != null)
+            {
+//                itemBinding.beautyCard.setBackgroundColor(vibrant.getRgb());
+            }
+        }
+    };
 }

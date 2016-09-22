@@ -36,7 +36,7 @@ public class BeautyFragment extends BaseFragment implements BaseInterface<File>{
         View view = inflater.inflate(R.layout.fragment_beauty,container,false);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.beauty_recycle);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(COLUMNCOUNT,StaggeredGridLayoutManager.VERTICAL));
-        adapter = new RecycleItemAdapter(datats);
+        adapter = new RecycleItemAdapter(datats,new WeakReference<>(getActivity()));
         recyclerView.setAdapter(adapter);
 
         requestPics();
