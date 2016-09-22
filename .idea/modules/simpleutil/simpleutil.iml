@@ -64,13 +64,6 @@
       <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/main/jni" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/main/rs" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/test/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/test/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/test/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/test/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/test/jni" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/test/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/androidTest/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/androidTest/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/androidTest/assets" type="java-test-resource" />
@@ -78,6 +71,13 @@
       <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/androidTest/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/androidTest/jni" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/androidTest/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/test/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/test/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/test/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/test/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/test/jni" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../simpleutil/src/test/rs" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/../../../simpleutil/build/intermediates/annotations" />
       <excludeFolder url="file://$MODULE_DIR$/../../../simpleutil/build/intermediates/blame" />
       <excludeFolder url="file://$MODULE_DIR$/../../../simpleutil/build/intermediates/bundles" />

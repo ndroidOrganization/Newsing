@@ -2,6 +2,10 @@ package com.newsing.fragment.topnews;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,68 +13,74 @@ import android.view.ViewGroup;
 
 import com.newsing.R;
 import com.newsing.basic.BaseFragment;
-import com.newsing.fragment.topnews.adapter.NewsAdapter;
+import com.newsing.fragment.topnews.viewpagerfragment.NewsViewPagerFragment_;
 import com.newsing.interfaces.OnScrollListener;
 import com.newsing.view.SWDropView;
 import com.newsing.view.SWLoadView;
 import com.newsing.view.SWRecyclerViewLayout;
+import com.newsing.view.viewpager.SWViewPager;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.DimensionPixelSizeRes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Administrator on 2016/9/20 0020.
  */
 @EFragment(R.layout.fragment_topnews)
-public class TopNewsFragment extends BaseFragment implements OnScrollListener {
+public class TopNewsFragment extends BaseFragment {
 
     @ViewById
-    SWRecyclerViewLayout recyclerlayout;
-    NewsAdapter adapter;
-    @DimensionPixelSizeRes(R.dimen.dp100)
-    int dp100;
-    private static final String TAG = "RecyclerActivity";
-    private View header;
-    private View footer;
-    private SWDropView drop;
-    private SWLoadView load;
+    TabLayout tablayout;
+    @ViewById
+    SWViewPager viewpager;
+    private List<String> titles = new ArrayList<>();
+    private List<Fragment> fragmentList = new ArrayList<>();
 
     @AfterViews
-    void afterview() {
-        adapter = new NewsAdapter(getContext());
-        header = LayoutInflater.from(getContext()).inflate(R.layout.drop, null);
-        footer = LayoutInflater.from(getContext()).inflate(R.layout.load, null);
-        drop = (SWDropView) header.findViewById(R.id.drop);
-        load = (SWLoadView) footer.findViewById(R.id.load);
-        recyclerlayout.addHeaderView(header, dp100);
-        recyclerlayout.addFooterView(footer, dp100);
-        recyclerlayout.setMyRecyclerView(new LinearLayoutManager(getContext()), adapter);
-        recyclerlayout.addScrollListener(this);
+    void afterviews() {
+        titles.add("头条");
+        titles.add("资讯");
+        titles.add("体育");
+        titles.add("博客");
+        titles.add("杂志");
+        tablayout.setTabMode(TabLayout.MODE_FIXED);
+        fragmentList.add(new NewsViewPagerFragment_());
+        fragmentList.add(new NewsViewPagerFragment_());
+        fragmentList.add(new NewsViewPagerFragment_());
+        fragmentList.add(new NewsViewPagerFragment_());
+        fragmentList.add(new NewsViewPagerFragment_());
+        tablayout.addTab(tablayout.newTab().setText(titles.get(0)));
+        tablayout.addTab(tablayout.newTab().setText(titles.get(1)));
+        tablayout.addTab(tablayout.newTab().setText(titles.get(2)));
+        tablayout.addTab(tablayout.newTab().setText(titles.get(3)));
+        tablayout.addTab(tablayout.newTab().setText(titles.get(4)));
+        MyPagerAdapter adapter = new MyPagerAdapter(getFragmentManager());
+        viewpager.setAdapter(adapter);
+        tablayout.setupWithViewPager(viewpager);
+        tablayout.setTabsFromPagerAdapter(adapter);
     }
 
-    public void touchUp() {
-        if (recyclerlayout.getTotal() >= dp100) {
-            recyclerlayout.setScrollTo(recyclerlayout.getTotal(), dp100);
-        } else if (-recyclerlayout.getTotal() >= dp100) {
-            recyclerlayout.setScrollTo(recyclerlayout.getTotal(), -dp100);
-        } else if (recyclerlayout.getTotal() < dp100 || -recyclerlayout.getTotal() < dp100) {
-            recyclerlayout.setScrollTo(0, 0);
+    class MyPagerAdapter extends FragmentStatePagerAdapter {
+
+        public MyPagerAdapter(FragmentManager fm) {
+            super(fm);
         }
-    }
 
-    //判断是否需要刷新和加载
-    public void animStop(float y) {
-        if (y > 0) {
-            if (!recyclerlayout.isScrollRefresh()) {
-                recyclerlayout.setIsScrollRefresh(true);
-                drop.setRefresh(true);
-            }
-        } else if (y < 0) {
-            if (!recyclerlayout.isScrollLoad()) {
-                recyclerlayout.setIsScrollLoad(true);
-                load.setLoad(true);
-            }
+        public int getCount() {
+            return fragmentList.size();
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return fragmentList.get(position);
+        }
+
+        public CharSequence getPageTitle(int position) {
+            return titles.get(position);
         }
     }
 
