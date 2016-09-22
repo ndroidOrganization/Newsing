@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/Android/android-studio/gradle/gradle-2.10/caches/modules-2/files-2.1/io.reactivex/rxjava/1.1.6/2586312cd2b8a511e4c6236736f5a039fc0f2273/rxjava-1.1.6.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="2586312cd2b8a511e4c6236736f5a039fc0f2273">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/rxjava-1.1.6_1e633bffd3843a7dfd91554ae2187a02ad7330c0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/build/intermediates/exploded-aar/com.android.support/palette-v7/24.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="b3f2f82a3805cb689e32238c95cb291a433b4323">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-palette-v7-24.1.1_634e074adbf504644b2e790960ca0ec1c5b5af7d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.13.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="9bab39d73226491b969ef7ffebeae2e6e525e98f">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-fbcore-0.13.0_80be3feefc05bb0312767930a0c26ed3ff33f12d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="787871951412550519b0222aba3c9df4cea49875">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-24.1.1_9e81834293766617cce179af27f13129aa15bffa/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/libs/httpclient-4.2.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="872a71eac51131524f72f3100781dd88a42c9ccc">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/2/httpclient-4.2.2_5ec620e1989ede128fa5d0fa9de7bfa2179d5d9f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.13.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="4985047e64ea8daf00e923aac6386de67fbd5676">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-fresco-0.13.0_5586b19a225d710366d9c49a18bbd73a39ff5a94/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="e60dd828a41deacb70ef95db04ec10e6f494e880">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_a807d38ebda81057d9c31924c40da803a64777e6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.1/jars/libs/internal_impl-24.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="f78c2f395cb096f9dc1dc07e729922b8fcd3c4f5">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.1.1_bb33803d8f8292dbc50f7f93a65886609476220a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/Android/android-studio/gradle/gradle-2.10/caches/modules-2/files-2.1/com.squareup.okio/okio/1.9.0/f824591a0016efbaeddb8300bee54832a1398cfa/okio-1.9.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.9.0_57109ac0d690e8a3dd090386a480550eb0ee45b5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="f62e763609f65e47dc6c498760a4accf02776788">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.1.1_97e60ba403fc0fa3871468f4663b2832a690a066/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/Android/android-studio/gradle/gradle-2.10/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.4.1/c7c4f9e35c2fd5900da24f9872e3971801f08ce0/okhttp-3.4.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.4.1_c70ff611b99834bd92c13c9d05070faefc4e3c97/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/libs/jackson-all-1.9.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="b9c011c6e816af0eb462770d92a278b728071d31">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/2/jackson-all-1.9.0_6a8a36d4a0c13d7b2614b587a2166e77198ad14f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="1256c10604bb098490eab070d76754ac5ceab35c">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.1.1_90cb549969ac3f62352c46d8b858ceec580353a4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/build/intermediates/exploded-aar/com.android.databinding/library/1.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="957dc30b1495f8689271e00d56ab09cc9192df02">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.databinding-library-1.2.1_a20e3f82d867fdbc6624fa9a46e9e3a6853ef4f0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/24.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="4add8aa95c9f4e9a2ad64b7e2bf08e97e28955c1">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-24.1.1_1fce012e367c84cc19d54c5d9a851b2267c6d705/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="87fa56b12cd640357d49eae958311aec542c1d90">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_bd0f5f03eda606108212a4c39ab098c1757c0873/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/Android/android-studio/gradle/gradle-2.10/caches/modules-2/files-2.1/com.android.databinding/baseLibrary/2.2.0/e1d81f36ef9a5803689b3e888eb93a8759a17be0/baseLibrary-2.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="e1d81f36ef9a5803689b3e888eb93a8759a17be0">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/baseLibrary-2.2.0_a3e44d322ab6f527b3996cfac54ef5e43e97cf96/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/0.13.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="e818c866cdd1e9b94d54a3ffbd7420dca384746a">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-imagepipeline-base-0.13.0_ab13c1352e67c9225014febc04b5577f503142a5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/libs/httpcore-4.2.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="b76bee23cd3f3ee9b98bc7c2c14670e821ddbbfd">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/2/httpcore-4.2.2_ae6c9ffe14a25073669e47f191e001ef10c7ca96/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/build/intermediates/exploded-aar/com.android.support/design/24.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="e195bd694d5389acfba27ff4fdfa64c4c65b2c05">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-24.1.1_54807000440b7bb5bf2678a21df0e5d2fa2c461f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="6d7d803871e3203465f71a163e7af104f807b446">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.1.1_d3ac20ee3245398e346e3fa04ac68ce0cd3504b0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/build/intermediates/exploded-aar/com.android.databinding/adapters/1.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="c56d29136c2257f63f08c29c4e739efb03b06c7d">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.databinding-adapters-1.2.1_27a1898eecfa812aa57af3ff0d90a6ae4999e172/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.13.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="0aa38f91d7e6c9d5983d2148741de45b6cc5949b">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-imagepipeline-0.13.0_dfc64f8656a92b0f043c96e98d8440390d8488ba/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.1.1/support-annotations-24.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="3af19f153122737b372622fa6c81dd11a1c6b999">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.1.1_b9e2839c123ca75c957e3776c279721a16003625/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/libs/fastjson-1.2.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="b3cd06ff3f21c8cf487c241ed145154fbae6b4e2">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/2/fastjson-1.2.2_67397f4ae49d13474f3449b4075d1e3fb3dd0655/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="c936c1bd42f0c018c18920c7bec619ef056b24f8">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.1.1_8de3767c4e20bf066b80ba844358a15e342ba5aa/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.13.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="db1ed61a6eaa9d50ff214daf79ed485877aaa58a">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-drawee-0.13.0_a42480ab9d9462f8207f306f8751079e9e1bb7b1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/Android/android-studio/gradle/gradle-2.10/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/bolts-tasks-1.4.0_e2f5977f759de11242c7843a7e3eee1af286e1a0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/qzzhu/workspace/Newsing/app/build/intermediates/exploded-aar/io.reactivex/rxandroid/1.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="5a2386ad9bfff580b206a7fe305cdccd00798159">
+        <dex dex="/home/qzzhu/workspace/Newsing/app/build/intermediates/transforms/dex/debug/folders/1000/10/io.reactivex-rxandroid-1.2.1_166e85a468ca89fc4d6c200a645131e85273567f/classes.dex" />
+    </item>
+
+</items>
