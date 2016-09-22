@@ -29,6 +29,7 @@ import rx.schedulers.Schedulers;
  * Created by qzzhu on 16-9-21.
  */
 public class FileManager {
+    private final static String FileRoot = "com.Newsing";
     private final static String PrivateDir_Beauty = "beauty";
 
     private LruCache<String, Bitmap> mMemoryCache = null;
@@ -85,7 +86,7 @@ public class FileManager {
 
     private static File getBeautyFileDir(Context context){
 //      new File(context.getFilesDir(),PrivateDir_Beauty);
-        File file = new File(Environment.getExternalStorageDirectory(),PrivateDir_Beauty);
+        File file = new File(Environment.getExternalStorageDirectory()+"/"+FileRoot,PrivateDir_Beauty);
         if(!file.exists())
             file.mkdirs();
         return file;
