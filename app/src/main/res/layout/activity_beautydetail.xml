@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <data class=".BeautyDetailBinding">
+
+    </data>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.newsing.view.ZoomImageView
+        android:id="@+id/beauty_detail_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:scaleType="matrix"
+        android:transitionName="@string/beauty_item_shared"
+        android:src="@drawable/icon_test"
+        />
+</RelativeLayout>
+</layout>
