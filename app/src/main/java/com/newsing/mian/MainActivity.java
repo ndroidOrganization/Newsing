@@ -21,6 +21,7 @@ import com.newsing.basic.BaseFragment;
 import com.newsing.basic.BaseInterface;
 import com.newsing.fragment.beauty.BeautyFragment;
 import com.newsing.fragment.topnews.TopNewsFragment;
+import com.newsing.fragment.topnews.TopNewsFragment_;
 import com.newsing.mian.model.MainModel;
 
 public class MainActivity extends BaseActivity
@@ -49,7 +50,7 @@ public class MainActivity extends BaseActivity
 
     private void setUpFragments() {
         beautyFragment = new BeautyFragment();
-        topNewsFragment = new TopNewsFragment();
+        topNewsFragment = new TopNewsFragment_();
         model.setAdapter(this,beautyFragment,topNewsFragment);
         setUpTabsAndViewPager(beautyFragment.getTabName(),topNewsFragment.getTabName());
     }
