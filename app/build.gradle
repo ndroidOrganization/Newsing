@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'com.neenbedankt.android-apt'
 
 def AAVersion = '4.0.0'
 
@@ -53,8 +53,8 @@ android {
 }
 
 dependencies {
-//    apt "org.androidannotations:androidannotations:$AAVersion"
-//    compile "org.androidannotations:androidannotations-api:$AAVersion"
+    apt "org.androidannotations:androidannotations:$AAVersion"
+    compile "org.androidannotations:androidannotations-api:$AAVersion"
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:24.1.1'
     compile 'com.android.support:design:24.1.1'
@@ -70,9 +70,9 @@ dependencies {
     //compile project(':simpleutil')
 }
 
-//apt {
-//    arguments {
-//        androidManifestFile variant.outputs[0].processResources.manifestFile
-//        resourcePackageName android.defaultConfig.applicationId
-//    }
-//}
+apt {
+    arguments {
+        androidManifestFile variant.outputs[0].processResources.manifestFile
+        resourcePackageName android.defaultConfig.applicationId
+    }
+}
