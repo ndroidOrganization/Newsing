@@ -1,6 +1,5 @@
 package com.newsing.fragment.beauty;
 
-import android.app.Application;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -10,9 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.newsing.NewingApplication;
 import com.newsing.R;
 import com.newsing.basic.BaseFragment;
 import com.newsing.basic.BaseInterface;
+import com.newsing.utils.FileManager;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -70,7 +71,8 @@ public class BeautyFragment extends BaseFragment implements BaseInterface<File>{
     }
 
     private void request(String uri){
-        adapter.getFileUtils().DownloadBitmap(uri,new WeakReference<>(getActivity().getApplication()),this);
+        FileManager.getInstance(NewingApplication.getInstance())
+                .DownloadBitmap(uri,new WeakReference<>(getActivity().getApplication()),this);
     }
 
     @Override

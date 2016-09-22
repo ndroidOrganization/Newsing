@@ -2,7 +2,7 @@ package com.newsing.fragment.beauty;
 
 import android.content.Context;
 
-import com.newsing.utils.FileUtils;
+import com.newsing.utils.FileManager;
 
 /**
  * Created by qzzhu on 16-9-21.
@@ -20,6 +20,6 @@ class ItemModel {
     }
 
     String getFilePath(Context t){
-        return FileUtils.GetBeautyFile(t,picpath).getPath();
+        return FileManager.GetBeautyFile(t,picpath).getPath();
     }
 }

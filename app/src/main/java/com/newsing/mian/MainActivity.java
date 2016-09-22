@@ -9,7 +9,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,13 +16,14 @@ import android.view.View;
 
 import com.newsing.MainGroupBinding;
 import com.newsing.R;
+import com.newsing.basic.BaseActivity;
 import com.newsing.basic.BaseFragment;
 import com.newsing.basic.BaseInterface;
 import com.newsing.fragment.beauty.BeautyFragment;
 import com.newsing.fragment.topnews.TopNewsFragment;
 import com.newsing.mian.model.MainModel;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, BaseInterface<String> {
 
     MainGroupBinding binding = null;
