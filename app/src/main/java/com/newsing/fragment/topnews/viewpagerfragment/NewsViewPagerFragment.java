@@ -7,6 +7,6 @@ import org.androidannotations.annotations.EFragment;
 /**
  * Created by Angel on 2016/9/22.
  */
-@EFragment(R.layout.viewpager_news)
+@EFragment(R.layout.top_recycler)
 public class NewsViewPagerFragment extends Fragment {
 }
