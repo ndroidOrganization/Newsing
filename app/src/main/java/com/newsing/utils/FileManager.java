@@ -12,6 +12,7 @@ import com.newsing.NewingApplication;
 import com.newsing.basic.BaseInterface;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -94,30 +95,33 @@ public class FileManager {
 
     /**
      * downLoad image and write to local file if file not exist
+     * read local and net both in Async
      * @param icUri request uri
      * @param context context
      * @param callback background callback
      */
     public void DownloadBitmap(final String icUri, final WeakReference<Application> context, final BaseInterface<File> callback){
-
-        if(FileManager.GetBeautyFile(context.get(),icUri).exists())
-        {
-            //file already exist
-            callback.onComplete(FileManager.GetBeautyFile(context.get(),icUri));
-            return ;
-        }
-
-        if(!NetWorkUtils.isNetWorkAvailable(NewingApplication.getInstance()))
-        {
-            return ;
-        }
+        final boolean netWorkAvailable = NetWorkUtils.isNetWorkAvailable(NewingApplication.getInstance());
         //first request the bitmap inputStream
         Observable.create(new Observable.OnSubscribe<InputStream>() {
             @Override
             public void call(Subscriber<? super InputStream> subscriber) {
                 try {
-                    Response response = NetWorkUtils.getInstance().Get_Sync(icUri);
-                    subscriber.onNext(response.body().byteStream());
+                    File imagefile = FileManager.GetBeautyFile(context.get(),icUri);
+                    final String name = imagefile.getName();
+                    final String path = imagefile.getPath();
+                    final boolean isFileExist = imagefile.exists();
+                    InputStream is = null;
+                    if(isFileExist)
+                    {
+                        is = new FileInputStream(imagefile);
+                    }
+                    else if(netWorkAvailable)
+                    {
+                        Response response = NetWorkUtils.getInstance().Get_Sync(icUri);
+                        is = response.body().byteStream();
+                    }
+                    subscriber.onNext(is);
                     subscriber.onCompleted();
                 } catch (IOException e) {
 //                    subscriber.onError(e);
@@ -147,12 +151,9 @@ public class FileManager {
                         bitmap.compress(Bitmap.CompressFormat.PNG, 50, os);
                         os.flush();
                         os.close();
-//                        bitmap.recycle();
                         mMemoryCache.put(file.getName(),bitmap);
                     }
                 } catch (Exception e) {
-                    //file not found
-                    //callback.onError();
                     e.printStackTrace();
                 }
                 return file;
