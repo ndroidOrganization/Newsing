@@ -14,6 +14,7 @@ import com.newsing.R;
 import com.newsing.basic.BaseFragment;
 import com.newsing.basic.BaseInterface;
 import com.newsing.utils.FileManager;
+import com.newsing.view.LoadLayout;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -34,7 +35,7 @@ public class BeautyFragment extends BaseFragment implements BaseInterface<File>{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_beauty,container,false);
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.beauty_recycle);
+        RecyclerView recyclerView = ((LoadLayout) view.findViewById(R.id.beauty_group)).getRecycleView();
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(COLUMNCOUNT,StaggeredGridLayoutManager.VERTICAL));
         adapter = new RecycleItemAdapter(datats,new WeakReference<>(getActivity()));
         recyclerView.setAdapter(adapter);
