@@ -8,7 +8,7 @@ import java.util.List;
 public class OtherBean {
 
     private String reason;
-    private List<ResultBean> resultBeen;
+    private ResultBean resultBeen;
 
     public String getReason() {
         return reason;
@@ -18,18 +18,18 @@ public class OtherBean {
         this.reason = reason;
     }
 
-    public List<ResultBean> getResult() {
+    public ResultBean getResult() {
         return resultBeen;
     }
 
-    public void setResult(List<ResultBean> resultBeen) {
+    public void setResult(ResultBean resultBeen) {
         this.resultBeen = resultBeen;
     }
 
     public class ResultBean {
 
         private long stat;
-        private List<DataBean> dataBeen;
+        private List<Data> data;
 
         public long getStat() {
             return stat;
@@ -39,15 +39,15 @@ public class OtherBean {
             this.stat = stat;
         }
 
-        public List<DataBean> getDataBeen() {
-            return dataBeen;
+        public List<Data> getData() {
+            return data;
         }
 
-        public void setDataBeen(List<DataBean> dataBeen) {
-            this.dataBeen = dataBeen;
+        public void setData(List<Data> data) {
+            this.data = data;
         }
 
-        public class DataBean {
+        public class Data {
 
             private String title;
             private String date;

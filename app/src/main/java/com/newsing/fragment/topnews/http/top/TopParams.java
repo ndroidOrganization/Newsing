@@ -13,8 +13,8 @@ public class TopParams {
         this.type = type;
     }
 
-    public String getAllParams() {
-        return String.format("key=%d&type=%s", key, type);
+    public String getTopParams() {
+        return String.format("key=%s&type=%s", key, type);
     }
 
 }

@@ -13,8 +13,8 @@ public class OtherParams {
         this.type = type;
     }
 
-    public String getAllParams() {
-        return String.format("key=%d&type=%s", key, type);
+    public String getOtherParams() {
+        return String.format("key=%s&type=%s", key, type);
     }
 
 }
