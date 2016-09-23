@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by Angel on 2016/9/23.
  */
-public class AllBean {
+public class OtherBean {
 
     private String reason;
     private List<ResultBean> resultBeen;
