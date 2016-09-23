@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.support.v4.util.LruCache;
+import android.support.v4.util.Pair;
 import android.util.Log;
 
 import com.newsing.NewingApplication;
@@ -96,11 +97,9 @@ public class FileManager {
     /**
      * downLoad image and write to local file if file not exist
      * read local and net both in Async
-     * @param icUri request uri
-     * @param context context
-     * @param callback background callback
      */
-    public void DownloadBitmap(final String icUri, final WeakReference<Application> context, final BaseInterface<File> callback){
+    public void DownloadBitmap(final String icUri, final WeakReference<Application> context,
+                               final BaseInterface<File> callback){
         final boolean netWorkAvailable = NetWorkUtils.isNetWorkAvailable(NewingApplication.getInstance());
         //first request the bitmap inputStream
         Observable.create(new Observable.OnSubscribe<InputStream>() {
@@ -114,18 +113,18 @@ public class FileManager {
                     InputStream is = null;
                     if(isFileExist)
                     {
+                        Log.i("file","exist path :"+path);
                         is = new FileInputStream(imagefile);
                     }
                     else if(netWorkAvailable)
                     {
+                        Log.i("file","doesnot exist load from net");
                         Response response = NetWorkUtils.getInstance().Get_Sync(icUri);
                         is = response.body().byteStream();
                     }
                     subscriber.onNext(is);
                     subscriber.onCompleted();
                 } catch (IOException e) {
-//                    subscriber.onError(e);
-                    //network unavailable
                     e.printStackTrace();
                 }
             }
@@ -148,7 +147,7 @@ public class FileManager {
                     if(bitmap != null) {
                         file = FileManager.GetBeautyFile(context.get(), icUri);
                         FileOutputStream os = new FileOutputStream(file);
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 50, os);
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, os);
                         os.flush();
                         os.close();
                         mMemoryCache.put(file.getName(),bitmap);
@@ -160,9 +159,20 @@ public class FileManager {
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<File>() {//this notify complete
+                .subscribe(new Subscriber<File>() {
                     @Override
-                    public void call(File file) {
+                    public void onCompleted() {
+                        //do nothing
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if(callback != null)
+                            callback.onComplete(null);
+                    }
+
+                    @Override
+                    public void onNext(File file) {
                         if(callback != null)
                             callback.onComplete(file);
                     }

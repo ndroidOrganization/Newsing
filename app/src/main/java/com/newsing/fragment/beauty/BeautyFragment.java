@@ -3,8 +3,10 @@ package com.newsing.fragment.beauty;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +15,19 @@ import com.newsing.NewingApplication;
 import com.newsing.R;
 import com.newsing.basic.BaseFragment;
 import com.newsing.basic.BaseInterface;
+import com.newsing.fragment.beauty.net.NetItemModel;
+import com.newsing.utils.ConstValue;
 import com.newsing.utils.FileManager;
+import com.newsing.utils.NetWorkUtils;
 import com.newsing.view.LoadLayout;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Response;
 
 /**
  * Created by Administrator on 2016/9/20 0020.
@@ -40,38 +48,37 @@ public class BeautyFragment extends BaseFragment implements BaseInterface<File>{
         adapter = new RecycleItemAdapter(datats,new WeakReference<>(getActivity()));
         recyclerView.setAdapter(adapter);
 
-        requestPics();
+        requestPics(10);
 
         return view;
     }
 
-    private void requestPics(){
-        //test
-        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJ1fJWJ-IJFrFAAMdgtxozEgAAU-KQNnR7wAAx2a147.jpg");
-        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJ1fJWKCIJlicAALAo_WW1kwAAU-KQNtNYoAAsC7997.jpg");
-        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJlfJWKCINRzqAALQHHEm9jgAAU-KQNqZVYAAtA0983.jpg");
-        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJlfJWJ-IATyqAAKLmDZwFfYAAU-KQNkvAwAAouw067.jpg");
-        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJ1fJWJ-Ib1c5AAKQ7neu_rUAAU-KQNfbm0AApEG253.jpg");
-        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJlfJWJqIWPg3AAL4D9wtdhwAAU-KQHvrNAAAvgn153.jpg");
-        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJ1fJWJ-IJFrFAAMdgtxozEgAAU-KQNnR7wAAx2a147.jpg");
-        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJ1fJWKCIJlicAALAo_WW1kwAAU-KQNtNYoAAsC7997.jpg");
-        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJlfJWKCINRzqAALQHHEm9jgAAU-KQNqZVYAAtA0983.jpg");
-        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJlfJWJ-IATyqAAKLmDZwFfYAAU-KQNkvAwAAouw067.jpg");
-        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJ1fJWJ-Ib1c5AAKQ7neu_rUAAU-KQNfbm0AApEG253.jpg");
-        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJlfJWJqIWPg3AAL4D9wtdhwAAU-KQHvrNAAAvgn153.jpg");
-        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJ1fJWJ-IJFrFAAMdgtxozEgAAU-KQNnR7wAAx2a147.jpg");
-        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJ1fJWKCIJlicAALAo_WW1kwAAU-KQNtNYoAAsC7997.jpg");
-        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJlfJWKCINRzqAALQHHEm9jgAAU-KQNqZVYAAtA0983.jpg");
-        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJlfJWJ-IATyqAAKLmDZwFfYAAU-KQNkvAwAAouw067.jpg");
-        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJ1fJWJ-Ib1c5AAKQ7neu_rUAAU-KQNfbm0AApEG253.jpg");
-        request("http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/04/ChMkJlfJWJqIWPg3AAL4D9wtdhwAAU-KQHvrNAAAvgn153.jpg");
+    private void requestPics(int i) {
+        BeautyFragmentPresenter.requestPics(i,callback);
     }
 
+    final BaseInterface<List<NetItemModel>> callback = new BaseInterface<List<NetItemModel>>() {
+        @Override
+        public void onComplete(List<NetItemModel> result) {
+            for(NetItemModel item:result)
+            {
+                downImage(item.getUri());
+            }
+        }
+
+        @Override
+        public void onError(@StringRes int resId) {
+
+        }
+    };
+
+    @Override
     public String getTabName(){
         return "Beauty";
     }
 
-    private void request(String uri){
+
+    private void downImage(String uri){
         FileManager.getInstance(NewingApplication.getInstance())
                 .DownloadBitmap(uri,new WeakReference<>(getActivity().getApplication()),this);
     }

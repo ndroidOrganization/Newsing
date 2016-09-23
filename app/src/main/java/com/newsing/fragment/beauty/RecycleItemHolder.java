@@ -37,7 +37,7 @@ class RecycleItemHolder extends RecyclerView.ViewHolder {
             {
                 //set layout params
                 ViewGroup.LayoutParams layoutParams = itemBinding.getRoot().getLayoutParams();
-                layoutParams.height = map.getHeight();
+                layoutParams.height = calculateItemViewRightHeight(width,map.getWidth(),map.getHeight());//map.getHeight();
 
                 //set image
                 itemBinding.beautyItem.setImageBitmap(map);
@@ -52,4 +52,7 @@ class RecycleItemHolder extends RecyclerView.ViewHolder {
         }
     }
 
+    private int calculateItemViewRightHeight(int viewWidth, int picWidth, int picHeight){
+        return (int) (picHeight*viewWidth*1.0f/picWidth);
+    }
 }

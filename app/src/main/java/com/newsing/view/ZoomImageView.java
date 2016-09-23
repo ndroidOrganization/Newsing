@@ -31,7 +31,7 @@ public class ZoomImageView extends ImageView {
 	// min/max zoom boundary.
 	//
 	private static final float SUPER_MIN_MULTIPLIER = .5f;
-	private static final float SUPER_MAX_MULTIPLIER = 1.25f;
+	private static final float SUPER_MAX_MULTIPLIER = 1.5f;
 
     //
     // Scale of image ranges from minScale to maxScale, where minScale == 1
