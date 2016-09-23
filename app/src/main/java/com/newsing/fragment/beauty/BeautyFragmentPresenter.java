@@ -42,7 +42,7 @@ public class BeautyFragmentPresenter {
             @Override
             public List<NetItemModel> call(String s) {
                 if(s != null) {
-                    return new NetJsonResponse().setUp(s,numbers).getParsedDats();
+                    return NetJsonResponse.setUp(s,numbers).getParsedDats();
                 }
                 return null;
             }

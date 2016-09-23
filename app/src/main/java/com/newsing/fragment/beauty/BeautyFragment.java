@@ -72,10 +72,10 @@ public class BeautyFragment extends BaseFragment implements BaseInterface<File>{
         }
     };
 
+    @Override
     public String getTabName(){
         return "Beauty";
     }
-
 
 
     private void downImage(String uri){
