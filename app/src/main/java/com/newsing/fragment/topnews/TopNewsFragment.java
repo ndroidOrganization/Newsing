@@ -43,11 +43,20 @@ public class TopNewsFragment extends BaseFragment {
     @AfterViews
     void afterviews() {
         titles.add("头条");
-        titles.add("资讯");
+        titles.add("社会");
+        titles.add("国内");
+        titles.add("国际");
+        titles.add("娱乐");
         titles.add("体育");
-        titles.add("博客");
-        titles.add("杂志");
-        tablayout.setTabMode(TabLayout.MODE_FIXED);
+        titles.add("军事");
+        titles.add("科技");
+        titles.add("财经");
+        titles.add("时尚");
+        fragmentList.add(new NewsViewPagerFragment_());
+        fragmentList.add(new NewsViewPagerFragment_());
+        fragmentList.add(new NewsViewPagerFragment_());
+        fragmentList.add(new NewsViewPagerFragment_());
+        fragmentList.add(new NewsViewPagerFragment_());
         fragmentList.add(new NewsViewPagerFragment_());
         fragmentList.add(new NewsViewPagerFragment_());
         fragmentList.add(new NewsViewPagerFragment_());
@@ -58,6 +67,11 @@ public class TopNewsFragment extends BaseFragment {
         tablayout.addTab(tablayout.newTab().setText(titles.get(2)));
         tablayout.addTab(tablayout.newTab().setText(titles.get(3)));
         tablayout.addTab(tablayout.newTab().setText(titles.get(4)));
+        tablayout.addTab(tablayout.newTab().setText(titles.get(5)));
+        tablayout.addTab(tablayout.newTab().setText(titles.get(6)));
+        tablayout.addTab(tablayout.newTab().setText(titles.get(7)));
+        tablayout.addTab(tablayout.newTab().setText(titles.get(8)));
+        tablayout.addTab(tablayout.newTab().setText(titles.get(9)));
         MyPagerAdapter adapter = new MyPagerAdapter(getFragmentManager());
         viewpager.setAdapter(adapter);
         tablayout.setupWithViewPager(viewpager);
@@ -74,7 +88,6 @@ public class TopNewsFragment extends BaseFragment {
             return fragmentList.size();
         }
 
-        @Override
         public Fragment getItem(int position) {
             return fragmentList.get(position);
         }

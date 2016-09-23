@@ -10,6 +10,7 @@
             android:layout_height="wrap_content"
             sw:tabIndicatorColor="@color/colorPrimary"
             sw:tabSelectedTextColor="@color/colorPrimary"
+            sw:tabMode="scrollable"
             sw:tabTextColor="#000000"/>
 
     <com.newsing.view.viewpager.SWViewPager
