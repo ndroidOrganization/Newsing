@@ -10,8 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55900476-4072-4b9a-939e-1ab0ff761050" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="fea7a29e-02ad-4b3f-955a-47d512d55a4b" name="Failed commit: Default" comment="fragment" />
@@ -3611,7 +3609,7 @@
       <workItem from="1474525241455" duration="1601000" />
       <workItem from="1474526990920" duration="11194000" />
       <workItem from="1474543161989" duration="2017000" />
-      <workItem from="1474591395921" duration="167000" />
+      <workItem from="1474591395921" duration="269000" />
     </task>
     <task id="LOCAL-00001" summary="layout">
       <created>1474528323070</created>
@@ -3634,11 +3632,18 @@
       <option name="project" value="LOCAL" />
       <updated>1474545306551</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="apikey">
+      <created>1474591710333</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1474591710333</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15424000" />
+    <option name="totallyTimeSpent" value="15526000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1378" height="780" extended-state="0" />
