@@ -5,6 +5,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.Nullable;
+import android.support.v4.util.Pair;
 
 import java.io.IOException;
 
@@ -57,11 +58,14 @@ public class NetWorkUtils {
      * @return result [String]
      * @throws IOException
      */
-    public Response Get_Sync(String url) throws IOException{
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
-        return client.newCall(request).execute();
+    public Response Get_Sync(String url, Pair<String,String>... heads) throws IOException{
+        Request.Builder request = new Request.Builder()
+                .url(url);
+        for(Pair<String,String> pair:heads)
+        {
+            request.header(pair.first,pair.second);
+        }
+        return client.newCall(request.build()).execute();
     }
 
     /**
@@ -69,12 +73,14 @@ public class NetWorkUtils {
      * @param url url
      * @param callBack request callback
      */
-    public void Get_Async(String url,final NetWorkCallBack callBack){
-        final Request request = new Request.Builder()
-                .url(url)
-                .build();
-
-        client.newCall(request).enqueue(new okhttp3.Callback() {
+    public void Get_Async(String url,final NetWorkCallBack callBack,Pair<String,String>... heads){
+        Request.Builder request = new Request.Builder()
+                .url(url);
+        for(Pair<String,String> pair:heads)
+        {
+            request.header(pair.first,pair.second);
+        }
+        client.newCall(request.build()).enqueue(new okhttp3.Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 callBack.onError(e);

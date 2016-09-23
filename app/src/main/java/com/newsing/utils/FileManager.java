@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.support.v4.util.LruCache;
+import android.support.v4.util.Pair;
 import android.util.Log;
 
 import com.newsing.NewingApplication;
@@ -96,11 +97,9 @@ public class FileManager {
     /**
      * downLoad image and write to local file if file not exist
      * read local and net both in Async
-     * @param icUri request uri
-     * @param context context
-     * @param callback background callback
      */
-    public void DownloadBitmap(final String icUri, final WeakReference<Application> context, final BaseInterface<File> callback){
+    public void DownloadBitmap(final String icUri, final WeakReference<Application> context,
+                               final BaseInterface<File> callback){
         final boolean netWorkAvailable = NetWorkUtils.isNetWorkAvailable(NewingApplication.getInstance());
         //first request the bitmap inputStream
         Observable.create(new Observable.OnSubscribe<InputStream>() {
