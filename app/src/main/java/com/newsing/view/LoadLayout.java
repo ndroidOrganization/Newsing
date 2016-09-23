@@ -8,6 +8,7 @@ import android.support.v4.view.NestedScrollingParent;
 import android.support.v4.view.NestedScrollingParentHelper;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,16 +32,22 @@ public class LoadLayout extends FrameLayout implements NestedScrollingParent{//N
     private boolean refreshEnabled = false;
     private boolean loadEnabled = false;
 
+    public static enum DECORVIEW{
+        UNDER,
+        EDGE,
+        OVER
+    }
+
     /**
      * 是否位于Recyler上方作为头部
      * 否则被Recyler覆盖
      */
-    private static boolean LoadUnderFrame = false;
+    private static DECORVIEW LoadUnderFrame = DECORVIEW.OVER;
     /**
      * 是否位于Recyler下方作为底部
      * 否则被Recyler覆盖
      */
-    private static boolean RefreshUnderFrame = false;
+    private static DECORVIEW RefreshUnderFrame = DECORVIEW.OVER;
 
     public final static String LEFT = "left";
     public final static String RIGHT = "right";
@@ -59,6 +66,9 @@ public class LoadLayout extends FrameLayout implements NestedScrollingParent{//N
 //    private LinearLayout footerGroup = null;
     private View sleft,sright,sheader,sfooter,scenter;
     private Point pleft,pright,pheader,pfooter;
+
+    private boolean loading = false;
+    private boolean refreshing = false;
 
     public boolean isRefreshEnabled() {
         return refreshEnabled;
@@ -181,9 +191,14 @@ public class LoadLayout extends FrameLayout implements NestedScrollingParent{//N
             {
                 offSet_Y -= dyUnconsumed;
                 offSet_Y = changeOffsetY(offSet_Y);
-                mTarget.setY(RAWY + offSet_Y);//getCalculatorY(offSet_Y));
-                if(!RefreshUnderFrame)
+                if(RefreshUnderFrame != DECORVIEW.OVER) {
+                    mTarget.setY(RAWY + offSet_Y);//getCalculatorY(offSet_Y));
+                }
+                else{
                     sheader.setY(pheader.y + offSet_Y);
+                }
+//                if(RefreshUnderFrame == DECORVIEW.EDGE)
+//                    sheader.setY(pheader.y + offSet_Y);
                 notifyRefreshProcess(offSet_Y);
                 return ;
             }
@@ -194,9 +209,14 @@ public class LoadLayout extends FrameLayout implements NestedScrollingParent{//N
             {
                 offSet_Y -= dyUnconsumed;
                 offSet_Y = changeOffsetY(offSet_Y);
-                mTarget.setY(RAWY + offSet_Y);
-                if(!LoadUnderFrame)
+                if (LoadUnderFrame != DECORVIEW.OVER) {
+                    mTarget.setY(RAWY + offSet_Y);
+                }
+                else{
                     sfooter.setY(pfooter.y + offSet_Y);
+                }
+//                if (LoadUnderFrame == DECORVIEW.EDGE)
+//                    sfooter.setY(pfooter.y + offSet_Y);
                 notifyLoadProcess(offSet_Y);
                 return ;
             }
@@ -217,9 +237,13 @@ public class LoadLayout extends FrameLayout implements NestedScrollingParent{//N
                         consumed[1] = offSet_Y;
                         offSet_Y = 0;
                     }
-                    mTarget.setY(RAWY + changeOffsetY(offSet_Y));//getCalculatorY(offSet_Y));
-                    if(!RefreshUnderFrame)
+                    if(RefreshUnderFrame != DECORVIEW.OVER) {
+                        mTarget.setY(RAWY + changeOffsetY(offSet_Y));//getCalculatorY(offSet_Y));
+                    }else{
                         sheader.setY(pheader.y + offSet_Y);
+                    }
+//                    if(RefreshUnderFrame == DECORVIEW.EDGE)
+//                        sheader.setY(pheader.y + offSet_Y);
                     return;
                 }
             }
@@ -236,9 +260,13 @@ public class LoadLayout extends FrameLayout implements NestedScrollingParent{//N
                             consumed[1] = -offSet_Y;
                             offSet_Y = 0;
                         }
-                        mTarget.setY(RAWY + changeOffsetY(offSet_Y));
-                        if(!LoadUnderFrame)
+                        if(LoadUnderFrame != DECORVIEW.OVER) {
+                            mTarget.setY(RAWY + changeOffsetY(offSet_Y));
+                        }else{
                             sfooter.setY(pfooter.y + offSet_Y);
+                        }
+//                        if(LoadUnderFrame == DECORVIEW.EDGE)
+//                            sfooter.setY(pfooter.y + offSet_Y);
                         return;
                     }
                 }
@@ -262,39 +290,90 @@ public class LoadLayout extends FrameLayout implements NestedScrollingParent{//N
         return true;
     }
 
-    ObjectAnimator objectAnimator = null;
+    ValueAnimator objectAnimator = null;
 
     @Override
     public void onStopNestedScroll(View target) {
         mNestedScrollingParentHelper.onStopNestedScroll(target);
+
         if(offSet_Y != 0)
         {
-            objectAnimator = ObjectAnimator.ofFloat(mTarget,View.Y,offSet_Y,0).setDuration(BounceTime);
-            objectAnimator.setInterpolator(new LinearInterpolator());
-            objectAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    float value = (Float) animation.getAnimatedValue();
-                    offSet_Y = (int) value;
-                    mTarget.setY(RAWY + offSet_Y);
-                    if(offSet_Y > 0)
+            if(offSet_Y > 0)//refresh
+            {
+                if(refreshEnabled && sheader.getHeight() == offSet_Y)
+                {
+                    if(precessChangeListener != null)
                     {
-                        if(refreshEnabled)
-                        {
-                            if(!RefreshUnderFrame)
-                                sheader.setY(pheader.y + offSet_Y);
-                        }
-                    }else {
-                        if(loadEnabled) {
-                            if(!LoadUnderFrame)
-                                sfooter.setY(pfooter.y + offSet_Y);
-                        }
+                        precessChangeListener.Refreshing();
+                        refreshing = true;
                     }
                 }
-            });
-            objectAnimator.start();
+
+
+                if(RefreshUnderFrame == DECORVIEW.OVER)
+                {//头部需要更新
+                    //objectAnimator = ObjectAnimator.ofFloat(sheader,View.Y,sheader.getY(),pheader.y).setDuration(BounceTime);
+                    //objectAnimator.addUpdateListener(RecycleAnim);
+                }
+//                else if(RefreshUnderFrame == DECORVIEW.EDGE){
+//                    //全都需要更新
+//                    objectAnimator = ObjectAnimator.ofFloat(mTarget,View.Y,offSet_Y,0).setDuration(BounceTime);
+//                    objectAnimator.addUpdateListener(RecycleAnim);
+//                }else{
+//                    //list需要更新
+//                    objectAnimator = ObjectAnimator.ofFloat(mTarget,View.Y,offSet_Y,0).setDuration(BounceTime);
+//                    objectAnimator.addUpdateListener(RecycleAnim);
+//                }
+            }else { //loading
+                if (loadEnabled && sfooter.getHeight() == -offSet_Y) {
+                    if(precessChangeListener != null)
+                    {
+                        precessChangeListener.Loading();
+                        loading = true;
+                    }
+
+                }
+            }
+
+            if (objectAnimator != null)
+            {
+                objectAnimator.setInterpolator(new LinearInterpolator());
+                objectAnimator.start();
+            }
+
         }
     }
+
+    final ValueAnimator.AnimatorUpdateListener RecycleAnim =new ValueAnimator.AnimatorUpdateListener() {
+        @Override
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            float value = (float) valueAnimator.getAnimatedValue();
+            offSet_Y = (int) value;
+            Log.i("offset_Y",String.valueOf(offSet_Y));
+            if(offSet_Y > 0)
+            {
+                if(refreshEnabled)
+                {
+                    if(LoadUnderFrame != DECORVIEW.UNDER)
+                        sheader.setY(pheader.y + offSet_Y);
+                }
+            }else if(offSet_Y < 0){
+                if(loadEnabled) {
+                    if(LoadUnderFrame == DECORVIEW.EDGE || LoadUnderFrame == DECORVIEW.OVER)
+                        sfooter.setY(pfooter.y + offSet_Y);
+                }
+            }
+        }
+    };
+
+    final  ValueAnimator.AnimatorUpdateListener DecorAnim =new ValueAnimator.AnimatorUpdateListener() {
+
+        @Override
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+        }
+    };
+
 
     @Override
     public boolean onNestedFling(View target, float velocityX, float velocityY, boolean consumed) {
@@ -409,12 +488,12 @@ public class LoadLayout extends FrameLayout implements NestedScrollingParent{//N
         }
         if(sheader != null)
         {
-            if(!RefreshUnderFrame)
+            if(RefreshUnderFrame != DECORVIEW.UNDER)
                 sheader.setY(0 - sheader.getMeasuredHeight());
         }
         if(sfooter != null && mTarget != null)
         {
-            if(!LoadUnderFrame)
+            if(LoadUnderFrame != DECORVIEW.UNDER)
                 sfooter.setY(mTarget.getY() + mTarget.getMeasuredHeight());
         }
     }
@@ -500,6 +579,9 @@ public class LoadLayout extends FrameLayout implements NestedScrollingParent{//N
          * @param process value 0~100
          */
         void onRefresh(View header, int process);
+
+        void Loading();
+        void Refreshing();
     }
 
     onPrecessChangeListener precessChangeListener;
@@ -598,5 +680,28 @@ public class LoadLayout extends FrameLayout implements NestedScrollingParent{//N
             loadEnabled = true;
         }
         return true;
+    }
+
+    public boolean isLoading() {
+        return loading;
+    }
+
+    public boolean isRefreshing() {
+        return refreshing;
+    }
+
+    public void onComplete(){
+        if(refreshing && refreshEnabled && sheader!=null)
+        {
+            sheader.setY(pheader.y);
+            refreshing = false;
+            offSet_Y = 0;
+        }
+        if(loading && loadEnabled && sfooter!=null)
+        {
+            sfooter.setY(pfooter.y);
+            loading = false;
+            offSet_Y = 0;
+        }
     }
 }

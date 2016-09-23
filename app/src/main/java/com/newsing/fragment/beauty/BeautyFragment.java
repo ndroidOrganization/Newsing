@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.newsing.NewingApplication;
 import com.newsing.R;
@@ -38,12 +40,20 @@ public class BeautyFragment extends BaseFragment implements BaseInterface<File>{
 
     List<ItemModel> datats = new ArrayList<>();
     RecycleItemAdapter adapter = null;
+    LoadLayout layout = null;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_beauty,container,false);
-        RecyclerView recyclerView = ((LoadLayout) view.findViewById(R.id.beauty_group)).getRecycleView();
+
+
+        layout = ((LoadLayout) view.findViewById(R.id.beauty_group));
+        setUpHeadAndFooter(layout);
+        layout.setPrecessChangeListener(precessChangeListener);
+
+
+        RecyclerView recyclerView = layout.getRecycleView();
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(COLUMNCOUNT,StaggeredGridLayoutManager.VERTICAL));
         adapter = new RecycleItemAdapter(datats,new WeakReference<>(getActivity()));
         recyclerView.setAdapter(adapter);
@@ -52,6 +62,39 @@ public class BeautyFragment extends BaseFragment implements BaseInterface<File>{
 
         return view;
     }
+
+    private void setUpHeadAndFooter(LoadLayout layout){
+        TextView textView = new TextView(getContext());
+        textView.setText("pull to refresh");
+        layout.setHeadView(textView,new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,150));
+
+
+        TextView textView2 = new TextView(getContext());
+        textView2.setText("pull to refresh");
+        layout.setFooterView(textView2,new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,200));
+    }
+
+    private LoadLayout.onPrecessChangeListener precessChangeListener = new LoadLayout.onPrecessChangeListener() {
+        @Override
+        public void onLoad(View footer, int process) {
+            //Log.d("footer",String.valueOf(process));
+        }
+
+        @Override
+        public void onRefresh(View header, int process) {
+            //Log.d("header",String.valueOf(process));
+        }
+
+        @Override
+        public void Loading() {
+            requestPics(10);
+        }
+
+        @Override
+        public void Refreshing() {
+
+        }
+    };
 
     private void requestPics(int i) {
         BeautyFragmentPresenter.requestPics(i,callback);
@@ -88,6 +131,10 @@ public class BeautyFragment extends BaseFragment implements BaseInterface<File>{
         if(result != null){
             datats.add(new ItemModel(result.getPath()));
             adapter.notifyItemInserted(datats.size()-1);
+        }
+        if(datats.size() > 15)
+        {
+            layout.onComplete();
         }
     }
 
