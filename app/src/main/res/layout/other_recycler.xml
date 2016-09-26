@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:sw="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/layout"
+        sw:cardCornerRadius="@dimen/dp10"
+        sw:cardMaxElevation="@dimen/dp160"
+        sw:cardElevation="@dimen/dp4"
+        sw:contentPadding="@dimen/dp10"
+        android:layout_margin="@dimen/dp20">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp200"
+            android:layout_margin="@dimen/dp20">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp200"
+                android:orientation="horizontal">
+
+            <com.newsing.view.SWImageView
+                    android:id="@+id/swimage"
+                    android:layout_width="@dimen/dp150"
+                    android:layout_height="@dimen/dp200"
+                    android:src="@drawable/icon_test"
+                    sw:type="round"
+                    android:scaleType="centerCrop"/>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp16">
+
+                <TextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#4d4d4d"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="@dimen/sp35"/>
+
+                <TextView
+                        android:id="@+id/author_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"/>
+
+                <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

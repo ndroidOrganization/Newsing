@@ -1,28 +1,17 @@
 package com.newsing.fragment.topnews;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v7.widget.LinearLayoutManager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.newsing.R;
 import com.newsing.basic.BaseFragment;
-import com.newsing.fragment.topnews.viewpagerfragment.NewsViewPagerFragment_;
-import com.newsing.interfaces.OnScrollListener;
-import com.newsing.view.SWDropView;
-import com.newsing.view.SWLoadView;
-import com.newsing.view.SWRecyclerViewLayout;
+import com.newsing.fragment.topnews.viewpagerfragment.*;
 import com.newsing.view.viewpager.SWViewPager;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.res.DimensionPixelSizeRes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,15 +42,15 @@ public class TopNewsFragment extends BaseFragment {
         titles.add("财经");
         titles.add("时尚");
         fragmentList.add(new NewsViewPagerFragment_());
-        fragmentList.add(new NewsViewPagerFragment_());
-        fragmentList.add(new NewsViewPagerFragment_());
-        fragmentList.add(new NewsViewPagerFragment_());
-        fragmentList.add(new NewsViewPagerFragment_());
-        fragmentList.add(new NewsViewPagerFragment_());
-        fragmentList.add(new NewsViewPagerFragment_());
-        fragmentList.add(new NewsViewPagerFragment_());
-        fragmentList.add(new NewsViewPagerFragment_());
-        fragmentList.add(new NewsViewPagerFragment_());
+        fragmentList.add(new SocietyViewPagerFragment_());
+        fragmentList.add(new HomeViewPagerFragment_());
+        fragmentList.add(new InternationalViewPagerFragment_());
+        fragmentList.add(new AmuseViewPagerFragment_());
+        fragmentList.add(new SportViewPagerFragment_());
+        fragmentList.add(new MilitaryViewPagerFragment_());
+        fragmentList.add(new TechnologyViewPagerFragment_());
+        fragmentList.add(new FinanceViewPagerFragment_());
+        fragmentList.add(new FashionViewPagerFragment_());
         tablayout.addTab(tablayout.newTab().setText(titles.get(0)));
         tablayout.addTab(tablayout.newTab().setText(titles.get(1)));
         tablayout.addTab(tablayout.newTab().setText(titles.get(2)));
