@@ -46,9 +46,17 @@ public class TopNewsAdapter extends RecyclerView.Adapter {
             holder.date.setText(list.get(0).getResult().getData().get(position).getDate());
             holder.type.setText(list.get(0).getResult().getData().get(position).getType());
             holder.realtype.setText(list.get(0).getResult().getData().get(position).getRealtype());
-            String path=list.get(0).getResult().getData().get(position).getThumbnail_pic_s();
-            if(path!=null){
-                jack_ma.with(context).loadImage(path,holder.imageView,true,0);
+            String path1=list.get(0).getResult().getData().get(position).getThumbnail_pic_s();
+            String path2=list.get(0).getResult().getData().get(position).getThumbnail_pic_s02();
+            String path3=list.get(0).getResult().getData().get(position).getThumbnail_pic_s03();
+            if(path1!=null){
+                jack_ma.with(context).loadImage(path1,holder.imageView,true,0);
+            }
+            if(path1==null&&path2!=null){
+                jack_ma.with(context).loadImage(path2,holder.imageView,true,0);
+            }
+            if(path1==null&&path2==null&&path3!=null){
+                jack_ma.with(context).loadImage(path3,holder.imageView,true,0);
             }
         }
     }
