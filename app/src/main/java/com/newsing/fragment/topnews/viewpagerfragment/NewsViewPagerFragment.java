@@ -46,6 +46,7 @@ public class NewsViewPagerFragment extends Fragment implements OnScrollListener 
     private JSONObject json;
     private ArrayList<TopBean> list = new ArrayList<>();
 
+
     @AfterViews
     void afterview() {
         topNewsAdapter = new TopNewsAdapter(getContext());
@@ -54,15 +55,33 @@ public class NewsViewPagerFragment extends Fragment implements OnScrollListener 
         recyclerlayout.addHeaderView(header, dp100);
         recyclerlayout.setMyRecyclerView(new LinearLayoutManager(getContext()), topNewsAdapter);
         recyclerlayout.addScrollListener(this);
-        background();
+        if (list.size() == 0) {
+            recyclerlayout.setScrollTo(recyclerlayout.getTotal(), dp100);
+            if (!recyclerlayout.isScrollRefresh()) {
+                recyclerlayout.setIsScrollRefresh(true);
+                drop.setRefresh(true);
+                background();
+            }
+        }
     }
 
     public void touchUp() {
-        recyclerlayout.setScrollTo(0, 0);
+        if (recyclerlayout.getTotal() >= dp100) {
+            recyclerlayout.setScrollTo(recyclerlayout.getTotal(), dp100);
+            if (!recyclerlayout.isScrollRefresh()) {
+                recyclerlayout.setIsScrollRefresh(true);
+                drop.setRefresh(true);
+                background();
+            }
+
+        } else {
+            recyclerlayout.setScrollTo(0, 0);
+        }
     }
 
     public void animStop(float y) {
     }
+
 
     @Background
     void background() {
@@ -70,7 +89,6 @@ public class NewsViewPagerFragment extends Fragment implements OnScrollListener 
         String params = topparams.getTopParams();
         json = httpUtils.getResponseForGet(url, params);
         thread();
-        Log.i("info", "background: " + json);
     }
 
     @UiThread
@@ -78,12 +96,15 @@ public class NewsViewPagerFragment extends Fragment implements OnScrollListener 
         TopReturn topReturn = new TopReturn();
         topReturn.setTopBean(jsonUtils.getObject(jsonUtils.getJson(json), TopBean.class));
         TopBean bean = topReturn.getTopBean();
+        if (recyclerlayout.isScrollRefresh()) {
+            list.clear();
+        }
         list.add(bean);
         topNewsAdapter.setList(list);
-        topNewsAdapter.notifyDataSetChanged();
         recyclerlayout.setIsScrollRefresh(false);
         drop.setRefresh(false);
         recyclerlayout.setScrollTo(dp100, 0);
+        topNewsAdapter.notifyDataSetChanged();
     }
 
     private String getParams() {
