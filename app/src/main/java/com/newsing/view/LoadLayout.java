@@ -1,6 +1,7 @@
 package com.newsing.view;
 
 import android.animation.ObjectAnimator;
+import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Point;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 
@@ -20,7 +22,7 @@ import android.widget.FrameLayout;
  */
 public class LoadLayout extends FrameLayout implements NestedScrollingParent{//NestedScrollingChild
     //
-    public final static int BounceTime = 1000;
+    public final static int BounceTime = 5000;
 
     private RecyclerView mTarget = null; // the target of the gesture
 
@@ -244,6 +246,7 @@ public class LoadLayout extends FrameLayout implements NestedScrollingParent{//N
                     }
 //                    if(RefreshUnderFrame == DECORVIEW.EDGE)
 //                        sheader.setY(pheader.y + offSet_Y);
+                    notifyRefreshProcess(offSet_Y);
                     return;
                 }
             }
@@ -267,6 +270,7 @@ public class LoadLayout extends FrameLayout implements NestedScrollingParent{//N
                         }
 //                        if(LoadUnderFrame == DECORVIEW.EDGE)
 //                            sfooter.setY(pfooter.y + offSet_Y);
+                        notifyLoadProcess(offSet_Y);
                         return;
                     }
                 }
@@ -279,7 +283,7 @@ public class LoadLayout extends FrameLayout implements NestedScrollingParent{//N
      * @return
      */
     private boolean isLastItemVisible(){
-        RecyclerView.LayoutManager layoutManager = mTarget.getLayoutManager();
+//        RecyclerView.LayoutManager layoutManager = mTarget.getLayoutManager();
 //        if(layoutManager instanceof LinearLayoutManager)
 //        {
 //            return ((LinearLayoutManager)layoutManager).findLastCompletelyVisibleItemPosition() >= layoutManager.getItemCount()-1;
@@ -312,8 +316,7 @@ public class LoadLayout extends FrameLayout implements NestedScrollingParent{//N
 
                 if(RefreshUnderFrame == DECORVIEW.OVER)
                 {//头部需要更新
-                    //objectAnimator = ObjectAnimator.ofFloat(sheader,View.Y,sheader.getY(),pheader.y).setDuration(BounceTime);
-                    //objectAnimator.addUpdateListener(RecycleAnim);
+                    objectAnimator = ObjectAnimator.ofObject(evaluator,offSet_Y,0).setDuration(BounceTime);
                 }
 //                else if(RefreshUnderFrame == DECORVIEW.EDGE){
 //                    //全都需要更新
@@ -331,7 +334,10 @@ public class LoadLayout extends FrameLayout implements NestedScrollingParent{//N
                         precessChangeListener.Loading();
                         loading = true;
                     }
-
+                }
+                if(LoadUnderFrame == DECORVIEW.OVER)
+                {//头部需要更新
+                    objectAnimator = ObjectAnimator.ofObject(evaluator,offSet_Y,0).setDuration(BounceTime);
                 }
             }
 
@@ -344,12 +350,10 @@ public class LoadLayout extends FrameLayout implements NestedScrollingParent{//N
         }
     }
 
-    final ValueAnimator.AnimatorUpdateListener RecycleAnim =new ValueAnimator.AnimatorUpdateListener() {
+    final TypeEvaluator<?> evaluator = new TypeEvaluator<Integer>() {
         @Override
-        public void onAnimationUpdate(ValueAnimator valueAnimator) {
-            float value = (float) valueAnimator.getAnimatedValue();
-            offSet_Y = (int) value;
-            Log.i("offset_Y",String.valueOf(offSet_Y));
+        public Integer evaluate(float v, Integer start, Integer end) {
+            offSet_Y = (int) ((start - end)*(1-v));
             if(offSet_Y > 0)
             {
                 if(refreshEnabled)
@@ -363,14 +367,8 @@ public class LoadLayout extends FrameLayout implements NestedScrollingParent{//N
                         sfooter.setY(pfooter.y + offSet_Y);
                 }
             }
-        }
-    };
 
-    final  ValueAnimator.AnimatorUpdateListener DecorAnim =new ValueAnimator.AnimatorUpdateListener() {
-
-        @Override
-        public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
+            return offSet_Y;
         }
     };
 

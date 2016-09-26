@@ -1,5 +1,6 @@
 package com.newsing.fragment.beauty;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -22,6 +23,8 @@ import com.newsing.utils.ConstValue;
 import com.newsing.utils.FileManager;
 import com.newsing.utils.NetWorkUtils;
 import com.newsing.view.LoadLayout;
+
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.IOException;
@@ -64,30 +67,41 @@ public class BeautyFragment extends BaseFragment implements BaseInterface<File>{
     }
 
     private void setUpHeadAndFooter(LoadLayout layout){
-        TextView textView = new TextView(getContext());
-        textView.setText("pull to refresh");
-        layout.setHeadView(textView,new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,150));
+        View textView = getLayoutInflater(null).inflate(R.layout.beauty_head_footer,null);
+        layout.setHeadView(textView,new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,120));
 
-
-        TextView textView2 = new TextView(getContext());
-        textView2.setText("pull to refresh");
-        layout.setFooterView(textView2,new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,200));
+        View textView2 = getLayoutInflater(null).inflate(R.layout.beauty_head_footer,null);
+        layout.setFooterView(textView2,new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,120));
     }
 
     private LoadLayout.onPrecessChangeListener precessChangeListener = new LoadLayout.onPrecessChangeListener() {
         @Override
         public void onLoad(View footer, int process) {
             //Log.d("footer",String.valueOf(process));
+            TextView textView = ((TextView)footer.findViewById(R.id.beauty_decor_text));
+            if(process < -95)
+            {
+                textView.setText(R.string.beauty_footer_text2);
+            }else{
+                textView.setText(R.string.beauty_footer_text1);
+            }
         }
 
         @Override
         public void onRefresh(View header, int process) {
             //Log.d("header",String.valueOf(process));
+            TextView textView = ((TextView)header.findViewById(R.id.beauty_decor_text));
+            if(process > 95)
+            {
+                textView.setText(R.string.beauty_header_text2);
+            }else{
+                textView.setText(R.string.beauty_header_text1);
+            }
         }
 
         @Override
         public void Loading() {
-            requestPics(10);
+            //requestPics(10);
         }
 
         @Override

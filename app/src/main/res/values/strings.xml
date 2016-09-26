@@ -7,4 +7,9 @@
     <string name="action_settings">Settings</string>
     <string name="beauty_item_shared">beautySharedImage</string>
     <string name="url">http://v.juhe.cn/toutiao/index</string>
+    <string name="beauty_header_text2">松开刷新</string>
+    <string name="beauty_header_text1">下拉刷新</string>
+
+    <string name="beauty_footer_text2">松开加载更多</string>
+    <string name="beauty_footer_text1">上滑加载更多</string>
 </resources>
