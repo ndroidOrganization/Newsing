@@ -61,7 +61,8 @@ public class TopNewsFragment extends BaseFragment {
         tablayout.addTab(tablayout.newTab().setText(titles.get(7)));
         tablayout.addTab(tablayout.newTab().setText(titles.get(8)));
         tablayout.addTab(tablayout.newTab().setText(titles.get(9)));
-        MyPagerAdapter adapter = new MyPagerAdapter(getFragmentManager());
+        MyPagerAdapter adapter = new MyPagerAdapter(getChildFragmentManager());
+        viewpager.setOffscreenPageLimit(9);
         viewpager.setAdapter(adapter);
         tablayout.setupWithViewPager(viewpager);
         tablayout.setTabsFromPagerAdapter(adapter);
