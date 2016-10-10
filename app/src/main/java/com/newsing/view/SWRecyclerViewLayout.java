@@ -1,6 +1,5 @@
 package com.newsing.view;
 
-import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.support.v4.view.NestedScrollingParent;
@@ -9,7 +8,7 @@ import android.support.v7.widget.*;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
-import com.newsing.interfaces.OnScrollListener;
+import com.newsing.interfaces.OnTouchUpListener;
 
 /**
  * Created by Angel on 2016/7/27.
@@ -26,7 +25,7 @@ public class SWRecyclerViewLayout extends LinearLayout implements NestedScrollin
     private LinearLayout headerLayout = null;
     private MyRecyclerView myRecyclerView = null;
     private LinearLayout footerLayout = null;
-    private OnScrollListener onScrollListener = null;
+    private OnTouchUpListener onTouchUpListener = null;
     private boolean isfling = false;
 
     public SWRecyclerViewLayout(Context context) {
@@ -112,8 +111,8 @@ public class SWRecyclerViewLayout extends LinearLayout implements NestedScrollin
         myRecyclerView.scrollToPosition(position);
     }
 
-    public void addScrollListener(OnScrollListener onScrollListener) {
-        this.onScrollListener = onScrollListener;
+    public void addOnTouchUpListener(OnTouchUpListener onTouchUpListener) {
+        this.onTouchUpListener = onTouchUpListener;
     }
 
     public boolean onStartNestedScroll(View child, View target, int nestedScrollAxes) {
@@ -173,9 +172,9 @@ public class SWRecyclerViewLayout extends LinearLayout implements NestedScrollin
 
     public void onStopNestedScroll(View child) {
         helper.onStopNestedScroll(child);
-        if (onScrollListener != null) {
+        if (onTouchUpListener != null) {
             isfling = false;
-            onScrollListener.touchUp();
+            onTouchUpListener.touchUp();
         }
     }
 
@@ -204,23 +203,6 @@ public class SWRecyclerViewLayout extends LinearLayout implements NestedScrollin
                 int to = (int) (-((Float) animation.getAnimatedValue()).floatValue());
                 scrollTo(0, to);
                 totalY = to * 2;
-            }
-        });
-        animator.addListener(new Animator.AnimatorListener() {
-            public void onAnimationStart(Animator animator) {
-            }
-
-            public void onAnimationEnd(Animator animator) {
-                if (onScrollListener != null) {
-                    onScrollListener.animStop(distance);
-                }
-
-            }
-
-            public void onAnimationCancel(Animator animator) {
-            }
-
-            public void onAnimationRepeat(Animator animator) {
             }
         });
         animator.start();

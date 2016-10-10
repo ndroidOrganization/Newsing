@@ -13,7 +13,7 @@ import com.newsing.fragment.topnews.http.OtherReturn;
 import com.newsing.fragment.topnews.http.top.TopBean;
 import com.newsing.fragment.topnews.http.top.TopParams;
 import com.newsing.fragment.topnews.http.top.TopReturn;
-import com.newsing.interfaces.OnScrollListener;
+import com.newsing.interfaces.OnTouchUpListener;
 import com.newsing.utils.http.HttpUtils;
 import com.newsing.utils.http.JsonUtils;
 import com.newsing.view.SWDropView;
@@ -29,7 +29,7 @@ import java.util.ArrayList;
  * Created by Angel on 2016/9/22.
  */
 @EFragment(R.layout.viewpager_news)
-public class SocietyViewPagerFragment extends Fragment implements OnScrollListener {
+public class SocietyViewPagerFragment extends Fragment implements OnTouchUpListener {
 
     @ViewById
     SWRecyclerViewLayout recyclerlayout;
@@ -57,7 +57,7 @@ public class SocietyViewPagerFragment extends Fragment implements OnScrollListen
         drop = (SWDropView) header.findViewById(R.id.drop);
         recyclerlayout.addHeaderView(header, dp100);
         recyclerlayout.setMyRecyclerView(new LinearLayoutManager(getContext()), otherNewsAdapter);
-        recyclerlayout.addScrollListener(this);
+        recyclerlayout.addOnTouchUpListener(this);
         if (list.size() == 0) {
             recyclerlayout.setScrollTo(recyclerlayout.getTotal(), dp100);
             if (!recyclerlayout.isScrollRefresh()) {
@@ -82,8 +82,6 @@ public class SocietyViewPagerFragment extends Fragment implements OnScrollListen
         }
     }
 
-    public void animStop(float y) {
-    }
 
 
     @Background

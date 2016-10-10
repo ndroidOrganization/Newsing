@@ -9,7 +9,7 @@ import com.newsing.fragment.topnews.adapter.OtherNewsAdapter;
 import com.newsing.fragment.topnews.http.OtherBean;
 import com.newsing.fragment.topnews.http.OtherParams;
 import com.newsing.fragment.topnews.http.OtherReturn;
-import com.newsing.interfaces.OnScrollListener;
+import com.newsing.interfaces.OnTouchUpListener;
 import com.newsing.utils.http.HttpUtils;
 import com.newsing.utils.http.JsonUtils;
 import com.newsing.view.SWDropView;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
  * Created by Angel on 2016/9/22.
  */
 @EFragment(R.layout.viewpager_news)
-public class SportViewPagerFragment extends Fragment implements OnScrollListener {
+public class SportViewPagerFragment extends Fragment implements OnTouchUpListener {
 
     @ViewById
     SWRecyclerViewLayout recyclerlayout;
@@ -53,7 +53,7 @@ public class SportViewPagerFragment extends Fragment implements OnScrollListener
         drop = (SWDropView) header.findViewById(R.id.drop);
         recyclerlayout.addHeaderView(header, dp100);
         recyclerlayout.setMyRecyclerView(new LinearLayoutManager(getContext()), otherNewsAdapter);
-        recyclerlayout.addScrollListener(this);
+        recyclerlayout.addOnTouchUpListener(this);
         if (list.size() == 0) {
             recyclerlayout.setScrollTo(recyclerlayout.getTotal(), dp100);
             if (!recyclerlayout.isScrollRefresh()) {
@@ -77,10 +77,6 @@ public class SportViewPagerFragment extends Fragment implements OnScrollListener
             recyclerlayout.setScrollTo(0, 0);
         }
     }
-
-    public void animStop(float y) {
-    }
-
 
     @Background
     void background() {
