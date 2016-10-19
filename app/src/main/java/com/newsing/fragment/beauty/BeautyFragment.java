@@ -101,7 +101,7 @@ public class BeautyFragment extends BaseFragment implements BaseInterface<File>{
 
         @Override
         public void Loading() {
-            //requestPics(10);
+            requestPics(10);
         }
 
         @Override
@@ -117,6 +117,7 @@ public class BeautyFragment extends BaseFragment implements BaseInterface<File>{
     final BaseInterface<List<NetItemModel>> callback = new BaseInterface<List<NetItemModel>>() {
         @Override
         public void onComplete(List<NetItemModel> result) {
+            layout.onComplete();
             for(NetItemModel item:result)
             {
                 downImage(item.getUri());
@@ -131,7 +132,7 @@ public class BeautyFragment extends BaseFragment implements BaseInterface<File>{
 
     @Override
     public String getTabName(){
-        return "Beauty";
+        return "美女";
     }
 
 

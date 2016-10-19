@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import com.newsing.R;
+import com.newsing.basic.BaseFragment;
 import com.newsing.fragment.topnews.adapter.OtherNewsAdapter;
 import com.newsing.fragment.topnews.adapter.TopNewsAdapter;
 import com.newsing.fragment.topnews.http.OtherBean;
@@ -29,7 +30,7 @@ import java.util.ArrayList;
  * Created by Angel on 2016/9/22.
  */
 @EFragment(R.layout.viewpager_news)
-public class SocietyViewPagerFragment extends Fragment implements OnTouchUpListener {
+public class SocietyViewPagerFragment extends BaseFragment implements OnTouchUpListener {
 
     @ViewById
     SWRecyclerViewLayout recyclerlayout;
@@ -111,4 +112,5 @@ public class SocietyViewPagerFragment extends Fragment implements OnTouchUpListe
     private String getParams() {
         return "shehui";
     }
+
 }

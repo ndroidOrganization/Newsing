@@ -701,5 +701,7 @@ public class LoadLayout extends FrameLayout implements NestedScrollingParent{//N
             loading = false;
             offSet_Y = 0;
         }
+        if(objectAnimator!= null)
+            objectAnimator.end();
     }
 }

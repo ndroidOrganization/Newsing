@@ -22,6 +22,16 @@ import com.newsing.basic.BaseInterface;
 import com.newsing.fragment.beauty.BeautyFragment;
 import com.newsing.fragment.topnews.TopNewsFragment;
 import com.newsing.fragment.topnews.TopNewsFragment_;
+import com.newsing.fragment.topnews.viewpagerfragment.AmuseViewPagerFragment_;
+import com.newsing.fragment.topnews.viewpagerfragment.FashionViewPagerFragment_;
+import com.newsing.fragment.topnews.viewpagerfragment.FinanceViewPagerFragment_;
+import com.newsing.fragment.topnews.viewpagerfragment.HomeViewPagerFragment_;
+import com.newsing.fragment.topnews.viewpagerfragment.InternationalViewPagerFragment_;
+import com.newsing.fragment.topnews.viewpagerfragment.MilitaryViewPagerFragment_;
+import com.newsing.fragment.topnews.viewpagerfragment.NewsViewPagerFragment_;
+import com.newsing.fragment.topnews.viewpagerfragment.SocietyViewPagerFragment_;
+import com.newsing.fragment.topnews.viewpagerfragment.SportViewPagerFragment_;
+import com.newsing.fragment.topnews.viewpagerfragment.TechnologyViewPagerFragment_;
 import com.newsing.mian.model.MainModel;
 
 public class MainActivity extends BaseActivity
@@ -31,7 +41,7 @@ public class MainActivity extends BaseActivity
     MainModel model = null;
 
     BaseFragment beautyFragment = null;
-    BaseFragment topNewsFragment = null;
+    //BaseFragment topNewsFragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +60,39 @@ public class MainActivity extends BaseActivity
 
     private void setUpFragments() {
         beautyFragment = new BeautyFragment();
-        topNewsFragment = new TopNewsFragment_();
-        model.setAdapter(this,beautyFragment,topNewsFragment);
-        setUpTabsAndViewPager(beautyFragment.getTabName(),topNewsFragment.getTabName());
+        //topNewsFragment = new TopNewsFragment_();
+        NewsViewPagerFragment_ news = new NewsViewPagerFragment_();
+        SocietyViewPagerFragment_ social = new SocietyViewPagerFragment_();
+        HomeViewPagerFragment_ home = new HomeViewPagerFragment_();
+        InternationalViewPagerFragment_ internation = new InternationalViewPagerFragment_();
+        AmuseViewPagerFragment_ assume = new AmuseViewPagerFragment_();
+        SportViewPagerFragment_ suport = new SportViewPagerFragment_();
+        MilitaryViewPagerFragment_ mutiview = new MilitaryViewPagerFragment_();
+        TechnologyViewPagerFragment_ technology = new TechnologyViewPagerFragment_();
+        FinanceViewPagerFragment_ finance = new FinanceViewPagerFragment_();
+        FashionViewPagerFragment_ fashion = new FashionViewPagerFragment_();
+        model.setAdapter(this,beautyFragment,
+                news,
+                social,
+                home,
+                internation,
+                assume,
+                suport,
+                mutiview,
+                technology,
+                finance,
+                fashion);
+        setUpTabsAndViewPager(beautyFragment.getTabName(),
+                news.getTabName(),
+                social.getTabName(),
+                home.getTabName(),
+                internation.getTabName(),
+                assume.getTabName(),
+                suport.getTabName(),
+                mutiview.getTabName(),
+                technology.getTabName(),
+                finance.getTabName(),
+                fashion.getTabName());
     }
 
     private void setUpTabsAndViewPager(String... tabName){
