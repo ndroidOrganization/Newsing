@@ -6,8 +6,6 @@
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/Android/sdk/extras/android/m2repository/com/android/databinding/adapters/1.2.1/adapters-1.2.1-sources.jar!/" />
-      <root url="jar://F:/android-sdk1.5.0/extras/android/m2repository/com/android/databinding/adapters/1.2.1/adapters-1.2.1-sources.jar!/" />
       <root url="jar://D:/Developer/sdk/extras/android/m2repository/com/android/databinding/adapters/1.2.1/adapters-1.2.1-sources.jar!/" />
     </SOURCES>
   </library>

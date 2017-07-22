@@ -1,6 +1,7 @@
 package com.newsing.mian;
 
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.StringRes;
@@ -8,6 +9,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -20,19 +22,18 @@ import com.newsing.basic.BaseActivity;
 import com.newsing.basic.BaseFragment;
 import com.newsing.basic.BaseInterface;
 import com.newsing.fragment.beauty.BeautyFragment;
+import com.newsing.fragment.china.ChinaFragment;
+import com.newsing.fragment.entertainment.ETFragment;
+import com.newsing.fragment.fashion.FashionFragment;
+import com.newsing.fragment.finance.FinanceFragment;
+import com.newsing.fragment.military.MilitaryFragment;
+import com.newsing.fragment.society.SocietyFragment;
+import com.newsing.fragment.sports.SportsFragment;
+import com.newsing.fragment.technology.TechFragment;
 import com.newsing.fragment.topnews.TopNewsFragment;
-import com.newsing.fragment.topnews.TopNewsFragment_;
-import com.newsing.fragment.topnews.viewpagerfragment.AmuseViewPagerFragment_;
-import com.newsing.fragment.topnews.viewpagerfragment.FashionViewPagerFragment_;
-import com.newsing.fragment.topnews.viewpagerfragment.FinanceViewPagerFragment_;
-import com.newsing.fragment.topnews.viewpagerfragment.HomeViewPagerFragment_;
-import com.newsing.fragment.topnews.viewpagerfragment.InternationalViewPagerFragment_;
-import com.newsing.fragment.topnews.viewpagerfragment.MilitaryViewPagerFragment_;
-import com.newsing.fragment.topnews.viewpagerfragment.NewsViewPagerFragment_;
-import com.newsing.fragment.topnews.viewpagerfragment.SocietyViewPagerFragment_;
-import com.newsing.fragment.topnews.viewpagerfragment.SportViewPagerFragment_;
-import com.newsing.fragment.topnews.viewpagerfragment.TechnologyViewPagerFragment_;
 import com.newsing.mian.model.MainModel;
+
+import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, BaseInterface<String> {
@@ -40,7 +41,9 @@ public class MainActivity extends BaseActivity
     MainGroupBinding binding = null;
     MainModel model = null;
 
-    BaseFragment beautyFragment = null;
+    private SwipeRefreshLayout swipeRefreshLayout;
+
+//    BaseFragment beautyFragment = null;
     //BaseFragment topNewsFragment = null;
 
     @Override
@@ -49,6 +52,8 @@ public class MainActivity extends BaseActivity
         setContentView(R.layout.activity_main);
 
         View groupView = findViewById(R.id.layout_group);
+        swipeRefreshLayout = (SwipeRefreshLayout) groupView.findViewById(R.id.main_pager_refresher);
+        swipeRefreshLayout.setColorSchemeColors(Color.RED,Color.YELLOW,Color.BLUE,Color.GREEN);
         binding = DataBindingUtil.bind(groupView);
         model = new MainModel<>(this);
 
@@ -59,39 +64,40 @@ public class MainActivity extends BaseActivity
     }
 
     private void setUpFragments() {
-        beautyFragment = new BeautyFragment();
         //topNewsFragment = new TopNewsFragment_();
-        NewsViewPagerFragment_ news = new NewsViewPagerFragment_();
-        SocietyViewPagerFragment_ social = new SocietyViewPagerFragment_();
-        HomeViewPagerFragment_ home = new HomeViewPagerFragment_();
-        InternationalViewPagerFragment_ internation = new InternationalViewPagerFragment_();
-        AmuseViewPagerFragment_ assume = new AmuseViewPagerFragment_();
-        SportViewPagerFragment_ suport = new SportViewPagerFragment_();
-        MilitaryViewPagerFragment_ mutiview = new MilitaryViewPagerFragment_();
-        TechnologyViewPagerFragment_ technology = new TechnologyViewPagerFragment_();
-        FinanceViewPagerFragment_ finance = new FinanceViewPagerFragment_();
-        FashionViewPagerFragment_ fashion = new FashionViewPagerFragment_();
-        model.setAdapter(this,beautyFragment,
+        BaseFragment news = new BeautyFragment();
+        BaseFragment topnews = new TopNewsFragment();
+        BaseFragment society = new SocietyFragment();
+        BaseFragment china = new ChinaFragment();
+        BaseFragment entertainment = new ETFragment();
+        BaseFragment sports = new SportsFragment();
+        BaseFragment military = new MilitaryFragment();
+        BaseFragment tech = new TechFragment();
+        BaseFragment finence = new FinanceFragment();
+        BaseFragment fashion = new FashionFragment();
+
+        model.setAdapter(this,
                 news,
-                social,
-                home,
-                internation,
-                assume,
-                suport,
-                mutiview,
-                technology,
-                finance,
-                fashion);
-        setUpTabsAndViewPager(beautyFragment.getTabName(),
+                topnews,
+                society,
+                china,
+                entertainment,
+                sports,
+                military,
+                tech,
+                finence,
+                fashion
+                );
+        setUpTabsAndViewPager(
                 news.getTabName(),
-                social.getTabName(),
-                home.getTabName(),
-                internation.getTabName(),
-                assume.getTabName(),
-                suport.getTabName(),
-                mutiview.getTabName(),
-                technology.getTabName(),
-                finance.getTabName(),
+                topnews.getTabName(),
+                society.getTabName(),
+                china.getTabName(),
+                entertainment.getTabName(),
+                sports.getTabName(),
+                military.getTabName(),
+                tech.getTabName(),
+                finence.getTabName(),
                 fashion.getTabName());
     }
 
@@ -110,6 +116,13 @@ public class MainActivity extends BaseActivity
         {
             binding.mainpagertab.getTabAt(i).setText(tabName[i]);
         }
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                model.notifyRefresh(binding.mianviewpager.getCurrentItem());
+            }
+        });
     }
 
 
@@ -188,13 +201,8 @@ public class MainActivity extends BaseActivity
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-//        super.onSaveInstanceState(outState, outPersistentState);
-    }
-
-    @Override
     public void onComplete(String result) {
-
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override

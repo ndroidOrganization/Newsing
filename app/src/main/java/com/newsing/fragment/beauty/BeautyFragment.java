@@ -1,13 +1,10 @@
 package com.newsing.fragment.beauty;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
-import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,20 +16,15 @@ import com.newsing.R;
 import com.newsing.basic.BaseFragment;
 import com.newsing.basic.BaseInterface;
 import com.newsing.fragment.beauty.net.NetItemModel;
-import com.newsing.utils.ConstValue;
 import com.newsing.utils.FileManager;
-import com.newsing.utils.NetWorkUtils;
 import com.newsing.view.LoadLayout;
 
-import org.w3c.dom.Text;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.Response;
 
 /**
  * Created by Administrator on 2016/9/20 0020.
@@ -48,8 +40,7 @@ public class BeautyFragment extends BaseFragment implements BaseInterface<File>{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_beauty,container,false);
-
+        View view = inflater.inflate(R.layout.frag_beauty,container,false);
 
         layout = ((LoadLayout) view.findViewById(R.id.beauty_group));
         setUpHeadAndFooter(layout);
@@ -61,7 +52,7 @@ public class BeautyFragment extends BaseFragment implements BaseInterface<File>{
         adapter = new RecycleItemAdapter(datats,new WeakReference<>(getActivity()));
         recyclerView.setAdapter(adapter);
 
-        requestPics(10);
+        //requestPics(10);
 
         return view;
     }

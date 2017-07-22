@@ -31,7 +31,7 @@ class RecycleItemAdapter extends RecyclerView.Adapter<RecycleItemHolder>{
 
     @Override
     public RecycleItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_beauty_item,parent,false);
+        View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.frag_beauty_item,parent,false);
         return new RecycleItemHolder(item);
     }
 

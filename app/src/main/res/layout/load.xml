@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<com.newsing.view.SWLoadView xmlns:android="http://schemas.android.com/apk/res/android"
-                             android:id="@+id/load"
-              android:layout_width="match_parent"
-              android:layout_height="@dimen/dp100">
-</com.newsing.view.SWLoadView>

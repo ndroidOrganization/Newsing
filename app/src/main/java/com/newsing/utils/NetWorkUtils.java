@@ -6,8 +6,13 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.Nullable;
 import android.support.v4.util.Pair;
+import android.text.TextUtils;
+
+import com.alibaba.fastjson.JSON;
+import com.newsing.basic.BaseInterface;
 
 import java.io.IOException;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.MediaType;
@@ -15,6 +20,11 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by qzzhu on 16-8-22.
@@ -50,6 +60,43 @@ public class NetWorkUtils {
     public interface NetWorkCallBack{
         void onError(Exception e);
         void onComplete(Response result);
+    }
+
+    /**
+     * http Get method execute Async
+     * @return result [String]
+     * @throws IOException
+     */
+    public void ALIGet_Sync(final BaseInterface<String> callback){
+        Observable.create(new Observable.OnSubscribe<String>(){
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
+                try {
+                    Response response = NetWorkUtils.getInstance().Get_Sync(ConstValue.ALIAPI.uri,
+                            new Pair<String, String>(ConstValue.ALIAPI.ALIAUTHORY, ConstValue.ALIAPI.ALIAPPCODE));
+                    subscriber.onNext(response.body().string());
+                } catch (IOException e) {
+                    subscriber.onError(e);
+                }
+                subscriber.onCompleted();
+            }
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<String>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onError(-1);
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        callback.onComplete(s);
+                    }
+                });
     }
 
     /**
