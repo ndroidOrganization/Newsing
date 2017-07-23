@@ -2,31 +2,32 @@ package com.newsing.basic;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.newsing.fragment.ActionPresenter;
-import com.newsing.fragment.topnews.ListAdapter;
+import com.newsing.interfaces.IPresenterAction;
+import com.newsing.mian.adapter.ListAdapter;
 import com.newsing.interfaces.IPresenterCallback;
-import com.newsing.utils.ConstValue;
 
 /**
  * Created by Administrator on 2016/9/20 0020.
  *
  */
-public abstract class BaseFragment extends Fragment implements IPresenterCallback {
+public abstract class BaseFragment extends Fragment implements IPresenterCallback,SwipeRefreshLayout.OnRefreshListener {
 
-    private BaseInterface baseInterface;
+//    private BaseInterface baseInterface;
 
-    protected ActionPresenter actionPresenter;
+    protected IPresenterAction actionPresenter;
 
     protected RecyclerView recyclerView;
+    protected SwipeRefreshLayout swipeRefreshLayout;
     protected ListAdapter adapter;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        baseInterface = (BaseInterface) context;
         actionPresenter = new ActionPresenter(this);
     }
 
@@ -41,14 +42,19 @@ public abstract class BaseFragment extends Fragment implements IPresenterCallbac
     public abstract void refresh();
 
     protected void onRefreshComplete(){
-        if(null != baseInterface)
-            baseInterface.onComplete(null);
+        if(null != swipeRefreshLayout)
+            swipeRefreshLayout.setRefreshing(false);
     }
 
     protected void async(String types){
         Log.i("network","request type = "+types+"\t"+getTabName());
         if(actionPresenter != null)
             actionPresenter.async(types);
+    }
+
+    @Override
+    public void onRefresh() {
+        refresh();
     }
 
     @Override

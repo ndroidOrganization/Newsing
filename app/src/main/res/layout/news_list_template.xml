@@ -4,6 +4,7 @@
     android:layout_height="72dp"
     >
 <LinearLayout
+    android:id="@+id/news_template_item"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="72dp">

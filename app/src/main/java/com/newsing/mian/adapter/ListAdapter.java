@@ -1,4 +1,4 @@
-package com.newsing.fragment.topnews;
+package com.newsing.mian.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -36,7 +36,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.setItemData(itemdatas.get(position));
+        holder.setItemData(itemdatas.get(position),clickListener);
     }
 
     public void swapDatas(List<ConstValue.ALIAPIBEANDATAITEM> datas){
@@ -47,13 +47,21 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
         notifyDataSetChanged();
     }
 
+    private final View.OnClickListener clickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            ConstValue.ALIAPIBEANDATAITEM data = (ConstValue.ALIAPIBEANDATAITEM) v.getTag();
+            data.logStringValue();
+        }
+    };
+
     @Override
     public int getItemCount() {
         return itemdatas == null ? 0 : itemdatas.size();
     }
 
     public final static class ViewHolder extends RecyclerView.ViewHolder{
-
+        private View content;
         private TextView title,date;
         private ImageView icon;
 
@@ -62,11 +70,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
             title = (TextView) itemView.findViewById(R.id.news_template_title);
             date = (TextView) itemView.findViewById(R.id.news_template_time);
             icon = (ImageView) itemView.findViewById(R.id.news_template_icon);
+            content = itemView.findViewById(R.id.news_template_item);
         }
 
-        public void setItemData(ConstValue.ALIAPIBEANDATAITEM itemData){
+        public void setItemData(ConstValue.ALIAPIBEANDATAITEM itemData,View.OnClickListener clickListener){
             title.setText(itemData.getTitle());
             date.setText(itemData.getDate());
+            content.setOnClickListener(clickListener);
+            content.setTag(itemData);
         }
 
     }

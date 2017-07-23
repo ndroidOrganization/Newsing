@@ -1,6 +1,7 @@
 package com.newsing.utils;
 
 import android.support.v4.util.Pair;
+import android.util.Log;
 
 import java.util.List;
 
@@ -180,6 +181,13 @@ public class ConstValue {
 
         public void setThumbnail_pic_s03(String thumbnail_pic_s03) {
             this.thumbnail_pic_s03 = thumbnail_pic_s03;
+        }
+
+        public void logStringValue(){
+            Log.i("item","uri = "+url);
+            Log.i("item","thumbnail_pic_s = "+thumbnail_pic_s);
+            Log.i("item","thumbnail_pic_s02 = "+thumbnail_pic_s02);
+            Log.i("item","thumbnail_pic_s03 = "+thumbnail_pic_s03);
         }
     }
 }

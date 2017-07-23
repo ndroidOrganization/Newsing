@@ -1,9 +1,9 @@
 package com.newsing.fragment.topnews;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.v4.util.Pair;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -14,19 +14,10 @@ import android.view.ViewGroup;
 import com.alibaba.fastjson.JSON;
 import com.newsing.R;
 import com.newsing.basic.BaseFragment;
-import com.newsing.basic.BaseInterface;
+import com.newsing.mian.adapter.ListAdapter;
 import com.newsing.utils.ConstValue;
-import com.newsing.utils.NetWorkUtils;
 
-import java.io.IOException;
 import java.util.List;
-
-import okhttp3.Response;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2017/7/22 0022.
@@ -41,6 +32,9 @@ public class TopNewsFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.frag_topnews,container,false);
         recyclerView = (RecyclerView) view.findViewById(R.id.news_content);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.frag_page_fresh);
+        swipeRefreshLayout.setColorSchemeColors(Color.RED,Color.YELLOW,Color.BLUE,Color.GREEN);
+        swipeRefreshLayout.setOnRefreshListener(this);
         adapter = new ListAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         async(ConstValue.ALIAPI.TOPNEWS);

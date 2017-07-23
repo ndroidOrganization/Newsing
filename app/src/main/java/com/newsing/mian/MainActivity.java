@@ -37,12 +37,10 @@ import com.newsing.mian.model.MainModel;
 import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener, BaseInterface<String> {
+        implements NavigationView.OnNavigationItemSelectedListener{
 
     MainGroupBinding binding = null;
     MainModel model = null;
-
-    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +48,8 @@ public class MainActivity extends BaseActivity
         setContentView(R.layout.activity_main);
 
         View groupView = findViewById(R.id.layout_group);
-        swipeRefreshLayout = (SwipeRefreshLayout) groupView.findViewById(R.id.main_pager_refresher);
-        swipeRefreshLayout.setColorSchemeColors(Color.RED,Color.YELLOW,Color.BLUE,Color.GREEN);
         binding = DataBindingUtil.bind(groupView);
-        model = new MainModel<>(this);
+        model = new MainModel<>();
 
         setUpToolBar();
         setUpDrawerBar();
@@ -114,12 +110,6 @@ public class MainActivity extends BaseActivity
             binding.mainpagertab.getTabAt(i).setText(tabName[i]);
         }
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                model.notifyRefresh(binding.mianviewpager.getCurrentItem());
-            }
-        });
     }
 
 
@@ -195,15 +185,5 @@ public class MainActivity extends BaseActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    @Override
-    public void onComplete(String result) {
-        swipeRefreshLayout.setRefreshing(false);
-    }
-
-    @Override
-    public void onError(@StringRes int resId) {
-
     }
 }

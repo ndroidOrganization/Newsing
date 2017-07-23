@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.support.annotation.Nullable;
 import android.support.v4.util.Pair;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.newsing.basic.BaseInterface;
@@ -73,6 +74,7 @@ public class NetWorkUtils {
             @Override
             public void call(Subscriber<? super String> subscriber) {
                 try {
+                    Log.i("NetWorkUtils","load start uri = \t"+ConstValue.ALIAPI.uri+path);
                     Response response = NetWorkUtils.getInstance().Get_Sync(ConstValue.ALIAPI.uri+path,
                             new Pair<String, String>(ConstValue.ALIAPI.ALIAUTHORY, ConstValue.ALIAPI.ALIAPPCODE));
                     subscriber.onNext(response.body().string());
@@ -90,11 +92,13 @@ public class NetWorkUtils {
 
                     @Override
                     public void onError(Throwable e) {
+                        e.printStackTrace();
                         callback.onError(-1);
                     }
 
                     @Override
                     public void onNext(String s) {
+                        Log.i("NetWorkUtils","load complete");
                         callback.onComplete(s);
                     }
                 });

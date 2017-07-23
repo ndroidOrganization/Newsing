@@ -24,6 +24,8 @@ public class MainModel<T> {
     public MainModel(BaseInterface<T> baseInterface){
         this.baseInterface = baseInterface;
     }
+    public MainModel() {
+    }
 
     public void setAdapter(AppCompatActivity contextThemeWrapper, BaseFragment... fragment){
         if(adapter == null)
@@ -36,11 +38,6 @@ public class MainModel<T> {
         else{
             //baseInterface.onError();
         }
-    }
-
-    public void notifyRefresh(int position){
-        if(pagers != null)
-            pagers.get(position).refresh();
     }
 
     public ViewPagerAdapyer getAdapter() {

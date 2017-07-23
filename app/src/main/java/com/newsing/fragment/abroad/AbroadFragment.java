@@ -1,8 +1,9 @@
 package com.newsing.fragment.abroad;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -13,10 +14,8 @@ import android.view.ViewGroup;
 import com.alibaba.fastjson.JSON;
 import com.newsing.R;
 import com.newsing.basic.BaseFragment;
-import com.newsing.basic.BaseInterface;
-import com.newsing.fragment.topnews.ListAdapter;
+import com.newsing.mian.adapter.ListAdapter;
 import com.newsing.utils.ConstValue;
-import com.newsing.utils.NetWorkUtils;
 
 import java.util.List;
 
@@ -44,6 +43,9 @@ public class AbroadFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.frag_abroad,container,false);
         recyclerView = (RecyclerView) view.findViewById(R.id.abroad_content);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.frag_page_fresh);
+        swipeRefreshLayout.setColorSchemeColors(Color.RED,Color.YELLOW,Color.BLUE,Color.GREEN);
+        swipeRefreshLayout.setOnRefreshListener(this);
         adapter = new ListAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         async(ConstValue.ALIAPI.ABROAD);

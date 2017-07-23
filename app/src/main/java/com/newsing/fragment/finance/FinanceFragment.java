@@ -1,7 +1,9 @@
 package com.newsing.fragment.finance;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -12,7 +14,7 @@ import android.view.ViewGroup;
 import com.alibaba.fastjson.JSON;
 import com.newsing.R;
 import com.newsing.basic.BaseFragment;
-import com.newsing.fragment.topnews.ListAdapter;
+import com.newsing.mian.adapter.ListAdapter;
 import com.newsing.utils.ConstValue;
 
 import java.util.List;
@@ -36,6 +38,9 @@ public class FinanceFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.frag_finance,container,false);
         recyclerView = (RecyclerView) view.findViewById(R.id.finance_content);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.frag_page_fresh);
+        swipeRefreshLayout.setColorSchemeColors(Color.RED,Color.YELLOW,Color.BLUE,Color.GREEN);
+        swipeRefreshLayout.setOnRefreshListener(this);
         adapter = new ListAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         async(ConstValue.ALIAPI.FINANCE);
