@@ -43,7 +43,7 @@ public class TopNewsFragment extends BaseFragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new ListAdapter(getActivity());
         recyclerView.setAdapter(adapter);
-        async();
+        async(ConstValue.ALIAPI.TOPNEWS);
         return view;
     }
 
@@ -53,30 +53,17 @@ public class TopNewsFragment extends BaseFragment {
     }
 
     @Override
-    public void refresh() {
-        async();
+    public void refresh(){
+        async(ConstValue.ALIAPI.TOPNEWS);
     }
 
-    //presenter module
-    private void async(){
-        NetWorkUtils.getInstance().ALIGet_Sync(requestResult);
+    public void onRequestComplete(String result) {
+        if(!TextUtils.isEmpty(result))
+        {
+            ConstValue.ALIAPIBEAN bean = JSON.parseObject(result,ConstValue.ALIAPIBEAN.class);
+            List<ConstValue.ALIAPIBEANDATAITEM> datats = bean.getResult().getData();
+            adapter.swapDatas(datats);
+            onRefreshComplete();
+        }
     }
-
-    private BaseInterface<String> requestResult = new BaseInterface<String>() {
-        @Override
-        public void onComplete(String result) {
-            if(!TextUtils.isEmpty(result))
-            {
-                ConstValue.ALIAPIBEAN bean = JSON.parseObject(result,ConstValue.ALIAPIBEAN.class);
-                List<ConstValue.ALIAPIBEANDATAITEM> datats = bean.getResult().getData();
-                adapter.swapDatas(datats);
-                onRefreshComplete();
-            }
-        }
-
-        @Override
-        public void onError(@StringRes int resId) {
-            //http error
-        }
-    };
 }

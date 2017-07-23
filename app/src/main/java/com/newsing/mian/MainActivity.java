@@ -21,6 +21,7 @@ import com.newsing.R;
 import com.newsing.basic.BaseActivity;
 import com.newsing.basic.BaseFragment;
 import com.newsing.basic.BaseInterface;
+import com.newsing.fragment.abroad.AbroadFragment;
 import com.newsing.fragment.beauty.BeautyFragment;
 import com.newsing.fragment.china.ChinaFragment;
 import com.newsing.fragment.entertainment.ETFragment;
@@ -43,9 +44,6 @@ public class MainActivity extends BaseActivity
 
     private SwipeRefreshLayout swipeRefreshLayout;
 
-//    BaseFragment beautyFragment = null;
-    //BaseFragment topNewsFragment = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,11 +62,10 @@ public class MainActivity extends BaseActivity
     }
 
     private void setUpFragments() {
-        //topNewsFragment = new TopNewsFragment_();
-        BaseFragment news = new BeautyFragment();
         BaseFragment topnews = new TopNewsFragment();
         BaseFragment society = new SocietyFragment();
         BaseFragment china = new ChinaFragment();
+        BaseFragment abroad = new AbroadFragment();
         BaseFragment entertainment = new ETFragment();
         BaseFragment sports = new SportsFragment();
         BaseFragment military = new MilitaryFragment();
@@ -77,10 +74,10 @@ public class MainActivity extends BaseActivity
         BaseFragment fashion = new FashionFragment();
 
         model.setAdapter(this,
-                news,
                 topnews,
                 society,
                 china,
+                abroad,
                 entertainment,
                 sports,
                 military,
@@ -89,10 +86,10 @@ public class MainActivity extends BaseActivity
                 fashion
                 );
         setUpTabsAndViewPager(
-                news.getTabName(),
                 topnews.getTabName(),
                 society.getTabName(),
                 china.getTabName(),
+                abroad.getTabName(),
                 entertainment.getTabName(),
                 sports.getTabName(),
                 military.getTabName(),

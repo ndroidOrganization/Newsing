@@ -39,7 +39,7 @@ public class ConstValue {
                 2c0a31647ab079d0524a8e8448d74d98
                 */
 
-        public final static String uri = "http://toutiao-ali.juheapi.com/toutiao/index";
+        public final static String uri = "http://toutiao-ali.juheapi.com/toutiao/index?type=";
         public static final String ALIAUTHORY = "Authorization";
         public static final String ALIAPPCODE = "APPCODE "+"3611a42e47ef4d6d80e6023ce6b40b00";
 

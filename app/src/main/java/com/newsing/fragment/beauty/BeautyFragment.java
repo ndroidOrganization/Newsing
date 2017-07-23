@@ -126,6 +126,11 @@ public class BeautyFragment extends BaseFragment implements BaseInterface<File>{
         return "美女";
     }
 
+    @Override
+    public void refresh() {
+
+    }
+
 
     private void downImage(String uri){
         FileManager.getInstance(NewingApplication.getInstance())

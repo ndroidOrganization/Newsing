@@ -67,12 +67,13 @@ public class NetWorkUtils {
      * @return result [String]
      * @throws IOException
      */
-    public void ALIGet_Sync(final BaseInterface<String> callback){
+    public void ALIGet_Sync(final BaseInterface<String> callback,String newsType){
+        final String path = (newsType == null ? ConstValue.ALIAPI.TOPNEWS : newsType);
         Observable.create(new Observable.OnSubscribe<String>(){
             @Override
             public void call(Subscriber<? super String> subscriber) {
                 try {
-                    Response response = NetWorkUtils.getInstance().Get_Sync(ConstValue.ALIAPI.uri,
+                    Response response = NetWorkUtils.getInstance().Get_Sync(ConstValue.ALIAPI.uri+path,
                             new Pair<String, String>(ConstValue.ALIAPI.ALIAUTHORY, ConstValue.ALIAPI.ALIAPPCODE));
                     subscriber.onNext(response.body().string());
                 } catch (IOException e) {
