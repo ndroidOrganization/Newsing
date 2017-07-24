@@ -133,8 +133,8 @@ public class BeautyFragment extends BaseFragment implements BaseInterface<File>{
 
 
     private void downImage(String uri){
-        FileManager.getInstance(NewingApplication.getInstance())
-                .DownloadBitmap(uri,new WeakReference<>(getActivity().getApplication()),this);
+//        FileManager.getInstance(NewingApplication.getInstance())
+//                .DownloadBitmap(uri,new WeakReference<>(getActivity().getApplication()),this);
     }
 
     @Override

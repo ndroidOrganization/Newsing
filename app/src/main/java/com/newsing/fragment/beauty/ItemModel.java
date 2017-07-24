@@ -23,6 +23,6 @@ class ItemModel {
     }
 
     String getFilePath(Context t){
-        return FileManager.GetBeautyFile(t,picpath).getPath();
+        return null;//FileManager.GetBeautyFile(t,picpath).getPath();
     }
 }

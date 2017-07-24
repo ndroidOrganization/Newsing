@@ -1,6 +1,10 @@
 package com.newsing.mian.adapter;
 
+import android.app.Application;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.annotation.StringRes;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -9,9 +13,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.newsing.NewingApplication;
 import com.newsing.R;
+import com.newsing.basic.BaseInterface;
+import com.newsing.utils.Base64Util;
 import com.newsing.utils.ConstValue;
+import com.newsing.utils.FileManager;
 
+import java.io.File;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +70,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
         return itemdatas == null ? 0 : itemdatas.size();
     }
 
-    public final static class ViewHolder extends RecyclerView.ViewHolder{
+    public final static class ViewHolder extends RecyclerView.ViewHolder implements BaseInterface<File>{
         private View content;
         private TextView title,date;
         private ImageView icon;
@@ -76,9 +86,30 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
         public void setItemData(ConstValue.ALIAPIBEANDATAITEM itemData,View.OnClickListener clickListener){
             title.setText(itemData.getTitle());
             date.setText(itemData.getDate());
+            final String imguri0 = itemData.getThumbnail_pic_s();
+            String imgName = Base64Util.encode(imguri0);
+            Bitmap thumb = FileManager.getInstance(NewingApplication.getInstance()).loadBitmap(-1,imgName);
+            if(thumb!=null)
+                icon.setImageBitmap(thumb);
+            else{
+                FileManager.getInstance(NewingApplication.getInstance())
+                        .DownloadBitmap(imguri0,imgName,null,new WeakReference<>(NewingApplication.getInstance())
+                            ,this,false,false);
+            }
             content.setOnClickListener(clickListener);
             content.setTag(itemData);
         }
 
+        @Override
+        public void onComplete(File result) {
+            Bitmap thumb = FileManager.getInstance(NewingApplication.getInstance()).loadBitmap(-1,result.getName());
+            if(thumb!=null)
+                icon.setImageBitmap(thumb);
+        }
+
+        @Override
+        public void onError(@StringRes int resId) {
+
+        }
     }
 }

@@ -18,7 +18,7 @@ public class NewingApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mApplication = this;
-        FileManager.checkFileDir(this);
+        //FileManager.checkFileDir(this);
 
         Thread.setDefaultUncaughtExceptionHandler(new CrashHandler());
     }
