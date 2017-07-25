@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.alibaba.fastjson.JSON;
 import com.newsing.R;
 import com.newsing.basic.BaseFragment;
-import com.newsing.mian.adapter.ListAdapter;
+import com.newsing.activity.mian.adapter.ListAdapter;
 import com.newsing.utils.ConstValue;
 
 import java.util.List;

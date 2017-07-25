@@ -1,7 +1,10 @@
 package com.newsing.utils;
 
+import android.os.Bundle;
 import android.support.v4.util.Pair;
 import android.util.Log;
+
+import com.newsing.activity.webpage.WebActivity;
 
 import java.util.List;
 
@@ -188,6 +191,12 @@ public class ConstValue {
             Log.i("item","thumbnail_pic_s = "+thumbnail_pic_s);
             Log.i("item","thumbnail_pic_s02 = "+thumbnail_pic_s02);
             Log.i("item","thumbnail_pic_s03 = "+thumbnail_pic_s03);
+        }
+
+        public Bundle getBundle(){
+            Bundle bundle = new Bundle();
+            bundle.putString(WebActivity.KEY_OF_TARGET_URI,url);
+            return bundle;
         }
     }
 }

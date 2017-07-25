@@ -8,7 +8,7 @@ import android.util.Log;
 
 import com.newsing.fragment.ActionPresenter;
 import com.newsing.interfaces.IPresenterAction;
-import com.newsing.mian.adapter.ListAdapter;
+import com.newsing.activity.mian.adapter.ListAdapter;
 import com.newsing.interfaces.IPresenterCallback;
 
 /**
