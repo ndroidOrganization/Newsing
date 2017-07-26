@@ -52,7 +52,7 @@ public class WebActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.webs, menu);
         return true;
     }
 
@@ -64,11 +64,26 @@ public class WebActivity extends BaseActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_collects) {
+            backUp();
+            return true;
+        }
+
+        if(id == R.id.action_share)
+        {
+            share();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void backUp(){
+
+    }
+
+    private void share(){
+
     }
 
     private void initialData(){

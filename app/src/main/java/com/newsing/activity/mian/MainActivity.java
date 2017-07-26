@@ -32,7 +32,7 @@ import com.newsing.activity.mian.model.MainModel;
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
-    private static boolean TEST = false;
+    private static boolean TEST = true;
 
     MainGroupBinding binding = null;
     MainModel model = null;
