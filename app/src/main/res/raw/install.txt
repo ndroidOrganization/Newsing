@@ -1,0 +1,1 @@
+adb install -r C:\Users\Administrator\Documents\GitHub\Newsing\app\build\outputs\apk\app-debug.apk

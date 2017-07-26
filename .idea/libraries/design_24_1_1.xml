@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="design-24.1.1">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.android.support/design/24.1.1/res" />
-      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.android.support/design/24.1.1/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/0e5ffad171b9afb5a203764b2c5968e55b140e8a/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/0e5ffad171b9afb5a203764b2c5968e55b140e8a/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

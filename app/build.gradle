@@ -7,7 +7,7 @@ repositories {
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "24.0.1"
+    buildToolsVersion '25.0.3'
     defaultConfig {
         applicationId "com.newsing"
         minSdkVersion 21
@@ -16,18 +16,13 @@ android {
         versionName "1.0"
     }
     buildTypes {
-        buildTypes {
-            release {
-                buildConfigField "long", "VERSION_TIME", System.currentTimeMillis()+"L"
-                buildConfigField "Boolean", "HTTP_B64", "false"
-                buildConfigField "String", "AppNameDir", "\"com.newsing\""
-            }
-            debug {
-                //applicationIdSuffix ".debug"
-                buildConfigField "long", "VERSION_TIME", System.currentTimeMillis()+"L"
-                buildConfigField "Boolean", "HTTP_B64", "true"
-                buildConfigField "String", "AppNameDir", "\"com.newsing\""
-            }
+        release {
+            buildConfigField "long", "VERSION_TIME", System.currentTimeMillis()+"L"
+            buildConfigField "String", "AppNameDir", "\"com.newsing\""
+        }
+        debug {
+            buildConfigField "long", "VERSION_TIME", System.currentTimeMillis()+"L"
+            buildConfigField "String", "AppNameDir", "\"com.newsing\""
         }
     }
     lintOptions {

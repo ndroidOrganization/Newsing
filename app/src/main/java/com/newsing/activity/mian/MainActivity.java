@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.newsing.BuildConfig;
 import com.newsing.MainGroupBinding;
 import com.newsing.R;
 import com.newsing.basic.BaseActivity;
@@ -30,6 +31,8 @@ import com.newsing.activity.mian.model.MainModel;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener{
+
+    private static boolean TEST = false;
 
     MainGroupBinding binding = null;
     MainModel model = null;
@@ -61,29 +64,15 @@ public class MainActivity extends BaseActivity
         BaseFragment finence = new FinanceFragment();
         BaseFragment fashion = new FashionFragment();
 
-        model.setAdapter(this,
-                topnews,
-                society,
-                china,
-                abroad,
-                entertainment,
-                sports,
-                military,
-                tech,
-                finence,
-                fashion
-                );
-        setUpTabsAndViewPager(
-                topnews.getTabName(),
-                society.getTabName(),
-                china.getTabName(),
-                abroad.getTabName(),
-                entertainment.getTabName(),
-                sports.getTabName(),
-                military.getTabName(),
-                tech.getTabName(),
-                finence.getTabName(),
-                fashion.getTabName());
+        BaseFragment[] fragments = new BaseFragment[]{topnews, society, china, abroad,
+                entertainment, sports, military, tech, finence, fashion};
+        model.setAdapter(this, TEST ? new BaseFragment[]{fragments[0]} : fragments);
+
+        String[] tabNames = new String[]{topnews.getTabName(), society.getTabName(), china.getTabName(),
+                abroad.getTabName(), entertainment.getTabName(), sports.getTabName(), military.getTabName(),
+                tech.getTabName(), finence.getTabName(), fashion.getTabName()};
+
+        setUpTabsAndViewPager(TEST ? new String[]{tabNames[0]} : tabNames);
     }
 
     private void setUpTabsAndViewPager(String... tabName){
