@@ -15,6 +15,7 @@ import com.alibaba.fastjson.JSON;
 import com.newsing.R;
 import com.newsing.basic.BaseFragment;
 import com.newsing.activity.mian.adapter.ListAdapter;
+import com.newsing.db.AliApiDataItem;
 import com.newsing.utils.ConstValue;
 
 import java.util.List;
@@ -60,7 +61,7 @@ public class AbroadFragment extends BaseFragment {
         if(!TextUtils.isEmpty(result))
         {
             ConstValue.ALIAPIBEAN bean = JSON.parseObject(result,ConstValue.ALIAPIBEAN.class);
-            List<ConstValue.ALIAPIBEANDATAITEM> datats = bean.getResult().getData();
+            List<AliApiDataItem> datats = bean.getResult().getData();
             adapter.swapDatas(datats);
             onRefreshComplete();
         }

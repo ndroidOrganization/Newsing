@@ -2,6 +2,7 @@ package com.newsing.activity.webpage;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +12,9 @@ import android.webkit.WebViewClient;
 
 import com.newsing.R;
 import com.newsing.basic.BaseActivity;
+import com.newsing.db.AliApiDataItem;
+import com.newsing.db.NewingEntity;
+import com.newsing.utils.DBManager;
 
 /**
  * Created by Administrator on 2017/7/25 0025.
@@ -23,6 +27,8 @@ public class WebActivity extends BaseActivity {
 
     private WebView webView;
 
+    private AliApiDataItem data;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +36,8 @@ public class WebActivity extends BaseActivity {
 
         webView = (WebView) findViewById(R.id.activity_webview);
 
-        targetUri = getIntent().getStringExtra(KEY_OF_TARGET_URI);
+        data = getIntent().getParcelableExtra(KEY_OF_TARGET_URI);
+        targetUri = data.getUrl();
 
         setUpToolBar();
         initialData();
@@ -80,7 +87,14 @@ public class WebActivity extends BaseActivity {
     }
 
     private void backUp(){
-
+        int result = DBManager.Insert(new NewingEntity(data));
+        View view = findViewById(R.id.web_container);
+        if(result != -1){
+            Snackbar.make(view,R.string.action_collect_ok,Snackbar.LENGTH_LONG).show();
+        }
+        else{
+            Snackbar.make(view,R.string.action_collect_failed,Snackbar.LENGTH_LONG).show();
+        }
     }
 
     private void share(){

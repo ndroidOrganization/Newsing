@@ -16,4 +16,7 @@
 
     <string name="beauty_footer_text2">松开加载更多</string>
     <string name="beauty_footer_text1">上滑加载更多</string>
+
+    <string name="action_collect_ok">收藏成功</string>
+    <string name="action_collect_failed">收藏失败,已收藏</string>
 </resources>
