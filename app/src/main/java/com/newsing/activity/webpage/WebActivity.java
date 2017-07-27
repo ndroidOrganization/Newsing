@@ -37,10 +37,11 @@ public class WebActivity extends BaseActivity {
     }
 
     private void setUpToolBar(){
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.web_toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("");
-        getSupportActionBar().setDisplayShowHomeEnabled(false);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

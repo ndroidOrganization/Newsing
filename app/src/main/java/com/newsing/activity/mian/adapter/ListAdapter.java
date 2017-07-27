@@ -15,6 +15,7 @@ import com.newsing.NewingApplication;
 import com.newsing.R;
 import com.newsing.activity.webpage.WebActivity;
 import com.newsing.basic.BaseInterface;
+import com.newsing.db.AliApiDataItem;
 import com.newsing.utils.ActivityTranslater;
 import com.newsing.utils.Base64Util;
 import com.newsing.utils.ConstValue;
@@ -30,7 +31,7 @@ import java.util.List;
  */
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
 
-    private List<ConstValue.ALIAPIBEANDATAITEM> itemdatas = null;
+    private List<AliApiDataItem> itemdatas = null;
 
     private Context context;
 
@@ -49,7 +50,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
         holder.setItemData(itemdatas.get(position),clickListener);
     }
 
-    public void swapDatas(List<ConstValue.ALIAPIBEANDATAITEM> datas){
+    public void swapDatas(List<AliApiDataItem> datas){
         if(itemdatas == null)
             itemdatas = new ArrayList<>();
         itemdatas.clear();
@@ -60,7 +61,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
     private final View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            ConstValue.ALIAPIBEANDATAITEM data = (ConstValue.ALIAPIBEANDATAITEM) v.getTag();
+            AliApiDataItem data = (AliApiDataItem) v.getTag();
             ActivityTranslater.GoTo(context,WebActivity.class,data.getBundle());
         }
     };
@@ -83,7 +84,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
             content = itemView.findViewById(R.id.news_template_item);
         }
 
-        public void setItemData(ConstValue.ALIAPIBEANDATAITEM itemData,View.OnClickListener clickListener){
+        public void setItemData(AliApiDataItem itemData,View.OnClickListener clickListener){
             title.setText(itemData.getTitle());
             date.setText(itemData.getDate());
             final String imguri0 = itemData.getThumbnail_pic_s();

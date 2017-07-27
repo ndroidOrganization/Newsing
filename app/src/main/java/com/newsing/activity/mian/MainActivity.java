@@ -93,8 +93,6 @@ public class MainActivity extends BaseActivity
 
     }
 
-
-
     private void setUpToolBar(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
