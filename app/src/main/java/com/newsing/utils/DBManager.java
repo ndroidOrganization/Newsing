@@ -14,14 +14,20 @@ import java.util.List;
  */
 public class DBManager {
     public static int Insert(NewingEntity record){
-        if(DataSupport.where(AliApiDataItem.WHERE,record.getDate()
-                ,record.getAuthor_name(),record.getUrl())
-                .find(NewingEntity.class).size()>0){
-            return -1;
-        }else{
-            record.save();
+        try {
+            if (DataSupport.where(AliApiDataItem.WHERE, record.getDate()
+                    , record.getAuthor_name(), record.getUrl())
+                    .find(NewingEntity.class).size() > 0) {
+                return -1;
+            } else {
+                record.save();
+            }
+            return record.getId();
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            return -2;
         }
-        return record.getId();
     }
 
     public static int delete(NewingEntity record){

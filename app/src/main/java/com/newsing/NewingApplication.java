@@ -6,6 +6,8 @@ import android.app.Application;
 import com.newsing.utils.CrashHandler;
 import com.newsing.utils.FileManager;
 
+import org.litepal.LitePal;
+
 /**
  * Created by qzzhu on 16-9-21.
  */
@@ -18,6 +20,7 @@ public class NewingApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mApplication = this;
+        LitePal.initialize(mApplication);
         //FileManager.checkFileDir(this);
 
         Thread.setDefaultUncaughtExceptionHandler(new CrashHandler());
