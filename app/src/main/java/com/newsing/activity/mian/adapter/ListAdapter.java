@@ -33,7 +33,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
 
     private List<AliApiDataItem> itemdatas = null;
 
-    private Context context;
+    protected Context context;
 
     public ListAdapter(ContextThemeWrapper contextThemeWrapper) {
         context = contextThemeWrapper;

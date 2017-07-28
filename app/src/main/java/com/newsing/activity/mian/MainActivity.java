@@ -15,6 +15,7 @@ import android.view.View;
 import com.newsing.BuildConfig;
 import com.newsing.MainGroupBinding;
 import com.newsing.R;
+import com.newsing.activity.mycollect.CollectionsActivity;
 import com.newsing.basic.BaseActivity;
 import com.newsing.basic.BaseFragment;
 import com.newsing.fragment.abroad.AbroadFragment;
@@ -28,6 +29,7 @@ import com.newsing.fragment.sports.SportsFragment;
 import com.newsing.fragment.technology.TechFragment;
 import com.newsing.fragment.topnews.TopNewsFragment;
 import com.newsing.activity.mian.model.MainModel;
+import com.newsing.utils.ActivityTranslater;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener{
@@ -49,7 +51,7 @@ public class MainActivity extends BaseActivity
         setUpToolBar();
         setUpDrawerBar();
 
-        setUpFragments();
+        //setUpFragments();
     }
 
     private void setUpFragments() {
@@ -148,17 +150,14 @@ public class MainActivity extends BaseActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_mycollect) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+            ActivityTranslater.GoTo(this,CollectionsActivity.class,null);
+        } else if (id == R.id.nav_myabout) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_android) {
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_weather) {
 
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

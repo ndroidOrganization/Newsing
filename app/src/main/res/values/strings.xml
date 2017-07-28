@@ -19,4 +19,17 @@
 
     <string name="action_collect_ok">收藏成功</string>
     <string name="action_collect_failed">收藏失败,已收藏</string>
+
+    <string name="nav_android">图灵机器人</string>
+    <string name="nav_weather">天气预言员</string>
+
+    <string name="my_newsing">个性化</string>
+    <string name="my_collect">我的收藏</string>
+    <string name="my_about">关于</string>
+
+
+    <string name="tr_prefix">Hi，我是图灵，小主人有何吩咐？</string>
+    <string name="tr_notxt">图灵并不想回答。</string>
+    <string name="tr_error">图灵根本不想理你，并向你抛了一个异常。</string>
+    <string name="tr_send">发送</string>
 </resources>

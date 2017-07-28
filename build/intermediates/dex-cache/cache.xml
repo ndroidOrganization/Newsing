@@ -2,13 +2,103 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="C:\Users\Administrator\Documents\GitHub\Newsing\app\libs\fastjson-1.2.2.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\developer\workspace\Newsing\trlibrary\build\intermediates\bundles\default\libs\turingSDK.jar"
+        jumboMode="true"
         optimize="true"
-        revision="25.0.3"
+        revision="25.0.2"
+        sha1="19f7cd916dee5469bd979d3b96552f3faf9570e5">
+        <dex dex="C:\developer\workspace\Newsing\app\build\intermediates\transforms\dex\debug\folders\1000\8\turingSDK_054bdeca3cdc66a5468460ffbb65199acf1d3b1e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\developer\workspace\Newsing\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="C:\developer\workspace\Newsing\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_4d3d656737e1a3f2e12b73590c458ae6c123eba6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\developer\workspace\Newsing\trlibrary\build\intermediates\bundles\default\libs\android-support-v4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="da351fadee6981cb47e9ee685f70924283214fda">
+        <dex dex="C:\developer\workspace\Newsing\app\build\intermediates\transforms\dex\debug\folders\1000\8\android-support-v4_05cc1870e5d7574c84bec0a0f4be66e7ef5f7d9d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\developer\workspace\Newsing\trlibrary\build\intermediates\bundles\default\libs\com.baidu.speechsynthesizer_1.1.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="59bad1683130fdb789dadaf1ae80c9a37acae5bb">
+        <dex dex="C:\developer\workspace\Newsing\app\build\intermediates\transforms\dex\debug\folders\1000\8\com.baidu.speechsynthesizer_1.1.2_6339d05c9f97829a671a638820d7732f3a1399b5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\developer\workspace\Newsing\trlibrary\build\intermediates\bundles\default\libs\VoiceRecognition-1.6.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="eddbcc3ba89d09dddecabb3db69314d4725597f3">
+        <dex dex="C:\developer\workspace\Newsing\app\build\intermediates\transforms\dex\debug\folders\1000\8\VoiceRecognition-1.6.2_5cd892313b923c3a6a6cebe81e971ff2a432f8f5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\developer\workspace\Newsing\trlibrary\build\intermediates\bundles\default\libs\com.baidu.android.localasr_1.1.22.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8978d4a0a092bc59942df13b6e1722ee57e85ab3">
+        <dex dex="C:\developer\workspace\Newsing\app\build\intermediates\transforms\dex\debug\folders\1000\8\com.baidu.android.localasr_1.1.22_0ebb3d439db603fd844007d5aa78975e14413f83\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\developer\workspace\Newsing\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0834ba3c465bc212a39871082dbe05f4e1a65818">
+        <dex dex="C:\developer\workspace\Newsing\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_f88aea9cee13e276e59825001be47ffce8da3875\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\developer\workspace\Newsing\app\libs\fastjson-1.2.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
         sha1="b3cd06ff3f21c8cf487c241ed145154fbae6b4e2">
-        <dex dex="C:\Users\Administrator\Documents\GitHub\Newsing\app\build\intermediates\pre-dexed\debug\fastjson-1.2.2_e09b64ef185990ec17da46a3743d607d655cf1cb.jar" />
+        <dex dex="C:\developer\workspace\Newsing\app\build\intermediates\transforms\dex\debug\folders\1000\2\fastjson-1.2.2_85a5daecc34198f276b9099d9670e712311a7ed3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\developer\workspace\Newsing\trlibrary\build\intermediates\bundles\default\libs\Baidu-SpeechRecognitionUI-SDK-Android-1.6.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a14bbaf55096c889459eba53ced7c91a2c7f4356">
+        <dex dex="C:\developer\workspace\Newsing\app\build\intermediates\transforms\dex\debug\folders\1000\8\Baidu-SpeechRecognitionUI-SDK-Android-1.6.2_e252d145f9eaf734796ade1938fe571b21b8c666\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\developer\workspace\Newsing\trlibrary\build\intermediates\bundles\default\libs\galaxy.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d4a8e6b3fa18011929fa876e15ab3fb17c85824b">
+        <dex dex="C:\developer\workspace\Newsing\app\build\intermediates\transforms\dex\debug\folders\1000\8\galaxy_ecab344d590359c9e9e13b3b55e99a484958fa96\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\developer\workspace\Newsing\trlibrary\build\intermediates\bundles\default\libs\volley.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d8e07a48371d92c984f20e5209c11243034c0b40">
+        <dex dex="C:\developer\workspace\Newsing\app\build\intermediates\transforms\dex\debug\folders\1000\8\volley_467d8e5bc929cab51074b985dc427ad20fd48fbc\classes.dex" />
     </item>
 
 </items>

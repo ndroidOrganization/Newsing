@@ -15,8 +15,11 @@
         android:theme="@style/AppTheme"
         android:name=".NewingApplication"
         >
+
+        <!--.activity.mian.MainActivity-->
+
         <activity
-            android:name=".activity.mian.MainActivity"
+            android:name=".activity.trchat.TRChatActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait"
@@ -35,6 +38,14 @@
         <activity android:name=".activity.webpage.WebActivity"
             android:screenOrientation="portrait"
             />
+
+        <activity android:name=".activity.mycollect.CollectionsActivity"
+            android:screenOrientation="portrait"
+            />
+
+        <!--<activity android:name=".activity.trchat.TRChatActivity"
+            android:screenOrientation="portrait"
+            />-->
     </application>
 
 </manifest>

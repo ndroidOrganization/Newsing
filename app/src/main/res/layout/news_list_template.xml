@@ -51,8 +51,8 @@
     </RelativeLayout>
 </LinearLayout>
 
-
     <View
+        android:id="@+id/news_template_divider"
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="@color/colorPrimaryDark"
