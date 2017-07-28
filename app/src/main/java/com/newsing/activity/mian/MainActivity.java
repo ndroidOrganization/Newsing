@@ -1,9 +1,12 @@
 package com.newsing.activity.mian;
 
+import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,6 +19,7 @@ import com.newsing.BuildConfig;
 import com.newsing.MainGroupBinding;
 import com.newsing.R;
 import com.newsing.activity.mycollect.CollectionsActivity;
+import com.newsing.activity.trchat.TRChatActivity;
 import com.newsing.basic.BaseActivity;
 import com.newsing.basic.BaseFragment;
 import com.newsing.fragment.abroad.AbroadFragment;
@@ -156,12 +160,22 @@ public class MainActivity extends BaseActivity
         } else if (id == R.id.nav_myabout) {
 
         } else if (id == R.id.nav_android) {
-
+            ActivityCompat.requestPermissions(this,new String[]{"android.permission.READ_PHONE_STATE"},1);
         } else if (id == R.id.nav_weather) {
 
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            ActivityTranslater.GoTo(this,TRChatActivity.class,null);
+        }else{
+            //permission denied
+        }
     }
 }

@@ -53,14 +53,15 @@ public class TRChatActivity extends BaseActivity implements TRChatCallback, View
     private void initData() {
         actions = new TRChatPresenter(this,this);
         actions.initialTR();
-
         actions.initRecyclerView(recyclerView);
     }
 
     public void submit(View view){
         String request = questions.getText().toString();
         actions.addData(false,request);
+
         actions.requestTR(request);
+        questions.setText("");
     }
 
     @Override

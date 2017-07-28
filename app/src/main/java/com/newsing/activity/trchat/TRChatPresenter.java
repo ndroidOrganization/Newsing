@@ -21,7 +21,9 @@ public class TRChatPresenter implements TRChatActions{
     private TRChatCallback callback;
     private Context context;
 
+    private RecyclerView recyclerView;
     private TRRecyclerAdapter adapter;
+    private LinearLayoutManager layoutManager;
 
     private TuringManager mTuringManager;
 
@@ -55,11 +57,13 @@ public class TRChatPresenter implements TRChatActions{
     @Override
     public void addData(boolean request, String content) {
         adapter.addData(request,content);
+        recyclerView.smoothScrollToPosition(adapter.getTotal());
     }
 
     @Override
     public void initRecyclerView(RecyclerView recyclerView) {
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        this.recyclerView = recyclerView;
+        recyclerView.setLayoutManager((layoutManager = new LinearLayoutManager(context)));
         recyclerView.setAdapter((adapter = new TRRecyclerAdapter(context)));
     }
 
@@ -74,10 +78,14 @@ public class TRChatPresenter implements TRChatActions{
                     JSONObject result_obj = new JSONObject(result);
                     if (result_obj.has("result")) {
                         callback.onResponse(null,result_obj.get("result").toString());
+                    }else if(result_obj.has("text")){
+                        callback.onResponse(null,result_obj.get("text").toString());
                     }
                 } catch (JSONException e) {
                     callback.onResponse(null,context.getString(R.string.tr_notxt));
                 }
+            }else{
+                callback.onResponse(null,context.getString(R.string.tr_notxt));
             }
         }
 

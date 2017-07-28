@@ -65,8 +65,11 @@ public class TRRecyclerAdapter extends RecyclerView.Adapter<TRRecyclerAdapter.Vi
     }
 
     public void addData(boolean request, String content){
-        Log.i("result",content);
         datas.add(new TRRecyclerItemBean(request, content));
-        notifyDataSetChanged();
+        notifyItemInserted(datas.size());
+    }
+
+    public int getTotal(){
+        return datas.size();
     }
 }
