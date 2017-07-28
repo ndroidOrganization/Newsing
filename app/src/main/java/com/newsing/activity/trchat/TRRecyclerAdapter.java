@@ -1,10 +1,7 @@
 package com.newsing.activity.trchat;
 
 import android.content.Context;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +28,12 @@ public class TRRecyclerAdapter extends RecyclerView.Adapter<TRRecyclerAdapter.Vi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.tuling_txt_template,parent,false);
+        View view;
+        if(viewType == 0) {
+             view = LayoutInflater.from(context).inflate(R.layout.tuling_list_robot, parent, false);
+        }else{
+             view = LayoutInflater.from(context).inflate(R.layout.tuling_list_my, parent, false);
+        }
         return new ViewHolder(view);
     }
 
@@ -47,7 +49,7 @@ public class TRRecyclerAdapter extends RecyclerView.Adapter<TRRecyclerAdapter.Vi
 
     @Override
     public int getItemViewType(int position) {
-        return super.getItemViewType(position);
+        return datas.get(position).isRequest() ? 1 : 0;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
