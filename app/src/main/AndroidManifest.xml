@@ -19,7 +19,7 @@
         <!--.activity.mian.MainActivity-->
 
         <activity
-            android:name=".activity.mian.MainActivity"
+            android:name=".test.TestActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait"
@@ -47,6 +47,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustUnspecified|adjustResize"
             />
+
     </application>
 
 </manifest>
