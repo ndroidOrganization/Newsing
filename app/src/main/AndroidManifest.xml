@@ -16,12 +16,10 @@
         android:name=".NewingApplication"
         >
 
-        <!--.activity.mian.MainActivity-->
-
         <activity
-            android:name=".test.TestActivity"
+            android:name="com.newsing.activity.login.LoginActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.TextInput"
             android:screenOrientation="portrait"
             >
             <intent-filter>
@@ -30,6 +28,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".activity.mian.MainActivity"
+            android:screenOrientation="portrait"
+            />
 
         <activity android:name=".fragment.beauty.activity.BeautyDetailActivity"
             android:screenOrientation="portrait"

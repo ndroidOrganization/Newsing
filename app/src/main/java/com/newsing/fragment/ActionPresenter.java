@@ -28,8 +28,8 @@ public class ActionPresenter implements IPresenterAction {
 
             @Override
             public void onError(@StringRes int resId) {
-//                if(baseInterface != null)
-//                    baseInterface.onRequestError(result);
+                if(baseInterface != null)
+                    baseInterface.onRequestError(null);
             }
         }, types);
     }

@@ -93,6 +93,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant-run-support" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/pre-dexed" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/reload-dex" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/restart-dex" />
@@ -131,7 +132,6 @@
     <orderEntry type="library" exported="" name="com.baidu.speechsynthesizer_1.1.2" level="project" />
     <orderEntry type="library" exported="" name="turingSDK" level="project" />
     <orderEntry type="library" exported="" name="VoiceRecognition-1.6.2" level="project" />
-    <orderEntry type="library" exported="" name="android-support-v4" level="project" />
     <orderEntry type="library" exported="" name="volley" level="project" />
     <orderEntry type="library" exported="" name="Baidu-SpeechRecognitionUI-SDK-Android-1.6.2" level="project" />
     <orderEntry type="library" exported="" name="galaxy" level="project" />

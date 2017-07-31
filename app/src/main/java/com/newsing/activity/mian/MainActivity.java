@@ -55,7 +55,7 @@ public class MainActivity extends BaseActivity
         setUpToolBar();
         setUpDrawerBar();
 
-        //setUpFragments();
+        setUpFragments();
     }
 
     private void setUpFragments() {

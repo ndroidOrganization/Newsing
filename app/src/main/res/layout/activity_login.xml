@@ -2,14 +2,13 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
     <RelativeLayout
         android:layout_width="0dp"
-        android:layout_height="260dp"
+        android:layout_height="220dp"
         android:background="@drawable/login_bg"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -55,23 +54,24 @@
         />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="224dp"
+        android:layout_marginTop="184dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view">
+        app:layout_constraintTop_toTopOf="@+id/view"
+        >
             <android.support.design.widget.TextInputLayout
                 android:paddingTop="8dp"
-                android:paddingBottom="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="60dp"
+                android:minHeight="50dp"
                 android:elevation="5dp"
-                android:hint="请输入账号"
+                android:hint="账号"
                 android:layout_margin="10dp"
                 android:background="@color/white"
+                style="@style/AppTheme.TextInput"
                 >
                 <EditText
                     android:layout_width="match_parent"
@@ -86,13 +86,12 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="60dp"
+                android:minHeight="50dp"
                 android:elevation="5dp"
-                android:hint="请输入密码"
+                android:hint="密码"
                 android:layout_margin="10dp"
                 android:background="@color/white"
                 android:paddingTop="8dp"
-                android:paddingBottom="8dp"
                 >
                 <EditText
                     android:layout_width="match_parent"
@@ -105,12 +104,11 @@
             </android.support.design.widget.TextInputLayout>
 
             <Button
+                android:id="@+id/login_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="56dp"
                 android:layout_margin="10dp"
                 android:text="登录"
-                android:background="@drawable/login_bt"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 style="@style/AppTheme.Button"
@@ -119,15 +117,22 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="56dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:text="注册"
-                android:background="@drawable/login_bt"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 style="@style/AppTheme.Button"
                 android:layout_marginBottom="12dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="忘记密码？"
+                android:layout_gravity="right"
+                android:textColor="@color/colorPrimary"
+                android:padding="4dp"
                 />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

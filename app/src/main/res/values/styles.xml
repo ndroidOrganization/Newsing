@@ -15,4 +15,17 @@
         <item name="android:background">@drawable/btn_material</item>
         <item name="android:stateListAnimator">@anim/button_list_anim</item>
     </style>
+
+    <style name="AppTheme.TextInput" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+
+        <item name="colorAccent">#3498db</item>
+        <item name="android:textColorHint">@color/colorPrimary</item>
+        <!--<item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/white</item>
+        <item name="colorControlHighlight">@color/white</item>-->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
 </resources>

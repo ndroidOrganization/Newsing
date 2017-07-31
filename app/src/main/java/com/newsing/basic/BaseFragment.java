@@ -64,6 +64,7 @@ public abstract class BaseFragment extends Fragment implements IPresenterCallbac
 
     @Override
     public void onRequestError(Exception e) {
-
+        if(null != swipeRefreshLayout)
+            swipeRefreshLayout.setRefreshing(false);
     }
 }
