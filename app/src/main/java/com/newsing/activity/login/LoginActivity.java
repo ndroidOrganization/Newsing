@@ -24,9 +24,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         initialView();
     }
+
 
     private void initialView(){
         login = (Button) findViewById(R.id.login_login);
@@ -41,7 +41,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         {
             case R.id.login_login:
                 ActivityTranslater.GoTo(this, MainActivity.class,null);
-                finish();
+                finishAfterTransition();
                 break;
         }
     }

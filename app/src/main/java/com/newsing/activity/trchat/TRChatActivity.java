@@ -2,13 +2,10 @@ package com.newsing.activity.trchat;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.newsing.R;
 import com.newsing.basic.BaseActivity;
@@ -63,6 +60,16 @@ public class TRChatActivity extends BaseActivity implements TRChatCallback, View
         actions.requestTR(request);
         questions.setText("");
     }
+
+//    @Override
+//    protected void setUpWindowScene() {
+//        Window window = getWindow();
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            window.setReturnTransition(new Slide(Gravity.START));
+//            window.setEnterTransition(new Explode());
+//            window.setExitTransition(new Fade());
+//        }
+//    }
 
     @Override
     public void onResponse(String question, String answers) {

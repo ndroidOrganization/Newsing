@@ -28,6 +28,16 @@ public class CollectionsActivity extends BaseActivity implements ICollectionCall
         setUpData();
     }
 
+//    @Override
+//    protected void setUpWindowScene() {
+//        Window window = getWindow();
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            window.setReturnTransition(new Fade());
+//            window.setEnterTransition(new Explode());
+//            window.setExitTransition(new Explode());
+//        }
+//    }
+
     private void setUpData() {
         presenter = new CollectionsPresenter(this);
         presenter.setAdapter(recyclerView,this);

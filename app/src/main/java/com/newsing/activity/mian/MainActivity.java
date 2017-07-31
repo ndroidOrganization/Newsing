@@ -15,9 +15,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.newsing.BuildConfig;
 import com.newsing.MainGroupBinding;
 import com.newsing.R;
+import com.newsing.activity.mian.model.MainModel;
 import com.newsing.activity.mycollect.CollectionsActivity;
 import com.newsing.activity.trchat.TRChatActivity;
 import com.newsing.basic.BaseActivity;
@@ -32,7 +32,6 @@ import com.newsing.fragment.society.SocietyFragment;
 import com.newsing.fragment.sports.SportsFragment;
 import com.newsing.fragment.technology.TechFragment;
 import com.newsing.fragment.topnews.TopNewsFragment;
-import com.newsing.activity.mian.model.MainModel;
 import com.newsing.utils.ActivityTranslater;
 
 public class MainActivity extends BaseActivity
@@ -115,6 +114,15 @@ public class MainActivity extends BaseActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
+//    @Override
+//    protected void setUpWindowScene() {
+//        Window window = getWindow();
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            window.setReturnTransition(new Fade());
+//            window.setExitTransition(new Fade());
+//        }
+//    }
 
     @Override
     public void onBackPressed() {

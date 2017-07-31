@@ -1,9 +1,11 @@
 package com.newsing.activity.mycollect;
 
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextThemeWrapper;
 
+import com.newsing.basic.BaseActivity;
 import com.newsing.db.AliApiDataItem;
 import com.newsing.db.NewingEntity;
 import com.newsing.utils.DBManager;
@@ -38,7 +40,7 @@ public class CollectionsPresenter implements ICollectionActions{
     }
 
     @Override
-    public void setAdapter(RecyclerView recyclerView, ContextThemeWrapper context) {
+    public void setAdapter(RecyclerView recyclerView, FragmentActivity context) {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter((adapter = new ListAdapterWrapper(context)));
     }

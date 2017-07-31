@@ -1,5 +1,6 @@
 package com.newsing.activity.mycollect;
 
+import android.support.v4.app.FragmentActivity;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,13 +8,14 @@ import android.view.ViewGroup;
 
 import com.newsing.R;
 import com.newsing.activity.mian.adapter.ListAdapter;
+import com.newsing.basic.BaseActivity;
 
 /**
  * Created by Qzhu on 2017/7/28.
  */
 
 public class ListAdapterWrapper extends ListAdapter {
-    public ListAdapterWrapper(ContextThemeWrapper contextThemeWrapper) {
+    public ListAdapterWrapper(FragmentActivity contextThemeWrapper) {
         super(contextThemeWrapper);
     }
 

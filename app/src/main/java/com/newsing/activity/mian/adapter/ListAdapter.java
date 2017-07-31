@@ -3,6 +3,7 @@ package com.newsing.activity.mian.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.StringRes;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.newsing.NewingApplication;
 import com.newsing.R;
 import com.newsing.activity.webpage.WebActivity;
+import com.newsing.basic.BaseActivity;
 import com.newsing.basic.BaseInterface;
 import com.newsing.db.AliApiDataItem;
 import com.newsing.utils.ActivityTranslater;
@@ -33,9 +35,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
 
     private List<AliApiDataItem> itemdatas = null;
 
-    protected Context context;
+    protected FragmentActivity context;
 
-    public ListAdapter(ContextThemeWrapper contextThemeWrapper) {
+    public ListAdapter(FragmentActivity contextThemeWrapper) {
         context = contextThemeWrapper;
     }
 

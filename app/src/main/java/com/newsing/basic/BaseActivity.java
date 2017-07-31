@@ -19,11 +19,16 @@ public class BaseActivity extends AppCompatActivity {
         setUpWindowScene();
     }
 
-    private void setUpWindowScene() {
+    protected void setUpWindowScene() {
         Window window = getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setEnterTransition(new Fade());
-            window.setReturnTransition(new Slide(Gravity.BOTTOM));
+
+            //finishAfterTransition
+            window.setReturnTransition(new Fade());
+
+            //enter exit
+            window.setEnterTransition(new Explode());
+            window.setExitTransition(new Fade());
         }
 
     }

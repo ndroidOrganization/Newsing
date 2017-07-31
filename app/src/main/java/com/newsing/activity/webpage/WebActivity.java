@@ -16,6 +16,8 @@ import com.newsing.db.AliApiDataItem;
 import com.newsing.db.NewingEntity;
 import com.newsing.utils.DBManager;
 
+import static com.newsing.utils.ActivityTranslater.KEY_BUNDLE;
+
 /**
  * Created by Administrator on 2017/7/25 0025.
  */
@@ -36,11 +38,13 @@ public class WebActivity extends BaseActivity {
 
         webView = (WebView) findViewById(R.id.activity_webview);
 
-        data = getIntent().getParcelableExtra(KEY_OF_TARGET_URI);
-        targetUri = data.getUrl();
-
+        Bundle bundle = getIntent().getBundleExtra(KEY_BUNDLE);
+        data = bundle.getParcelable(KEY_OF_TARGET_URI);
+        if(data!=null) {
+            targetUri = data.getUrl();
+            initialData();
+        }
         setUpToolBar();
-        initialData();
     }
 
     private void setUpToolBar(){
@@ -56,6 +60,16 @@ public class WebActivity extends BaseActivity {
             }
         });
     }
+
+//    @Override
+//    protected void setUpWindowScene() {
+//        Window window = getWindow();
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            window.setReturnTransition(new Explode());
+//            window.setEnterTransition(new Explode());
+//            window.setExitTransition(new Explode());
+//        }
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

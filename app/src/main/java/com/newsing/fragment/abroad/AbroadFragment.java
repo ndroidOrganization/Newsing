@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.alibaba.fastjson.JSON;
 import com.newsing.R;
+import com.newsing.basic.BaseActivity;
 import com.newsing.basic.BaseFragment;
 import com.newsing.activity.mian.adapter.ListAdapter;
 import com.newsing.db.AliApiDataItem;
