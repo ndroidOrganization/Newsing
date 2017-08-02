@@ -59,6 +59,15 @@ public class ConstValue {
         public static final String FINANCE = "caijing";
         public static final String FASHION = "shishang";
 
+
+        public final static String WEATHER24_Uri = "http://saweather.market.alicloudapi.com/hour24?area=";
+
+
+        public static String getDaysUri(String area){
+            return WEATHERDAYS_Uri+area+DAYS_ARGUMENTS;
+        }
+        private final static String WEATHERDAYS_Uri =" http://saweather.market.alicloudapi.com/area-to-weather?area=";
+        private final static String DAYS_ARGUMENTS = "&need3HourForcast=0&needAlarm=0&needHourData=0&needIndex=0&needMoreDay=1";
     }
 
     public static class ALIAPIBEAN{

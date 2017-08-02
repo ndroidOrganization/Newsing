@@ -20,6 +20,7 @@ import com.newsing.R;
 import com.newsing.activity.mian.model.MainModel;
 import com.newsing.activity.mycollect.CollectionsActivity;
 import com.newsing.activity.trchat.TRChatActivity;
+import com.newsing.activity.weather.WeatherActivity;
 import com.newsing.basic.BaseActivity;
 import com.newsing.basic.BaseFragment;
 import com.newsing.fragment.abroad.AbroadFragment;
@@ -170,7 +171,7 @@ public class MainActivity extends BaseActivity
         } else if (id == R.id.nav_android) {
             ActivityCompat.requestPermissions(this,new String[]{"android.permission.READ_PHONE_STATE"},1);
         } else if (id == R.id.nav_weather) {
-
+            ActivityTranslater.GoTo(this,WeatherActivity.class,null);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
