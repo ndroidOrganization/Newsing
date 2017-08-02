@@ -12,4 +12,5 @@ public class DayNowInfo {
     private String weather; //现在天气
     private String temperature; //现在温度
     private String weather_pic; //icon
+    private String sd; //湿度
 }
