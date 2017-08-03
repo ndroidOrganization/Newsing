@@ -11,7 +11,10 @@ import android.view.Menu;
 import android.view.View;
 
 import com.newsing.R;
+import com.newsing.activity.weather.days.DayNowInfo;
 import com.newsing.activity.weather.days.PredictionFragment;
+import com.newsing.activity.weather.today.ITodayCallback;
+import com.newsing.activity.weather.today.NowPresenter;
 import com.newsing.activity.weather.today.WeatherTodayFragment;
 import com.newsing.basic.BaseActivity;
 
@@ -19,9 +22,11 @@ import com.newsing.basic.BaseActivity;
  * Created by Qzhu on 2017/8/2.
  */
 
-public class WeatherActivity extends BaseActivity {
+public class WeatherActivity extends BaseActivity implements ITodayCallback {
     private WeatherTodayFragment hourfragment;
     private PredictionFragment predictionFragment;
+
+    private NowPresenter nowPresenter;
     private final static String area = "南京";
 
     @Override
@@ -35,6 +40,8 @@ public class WeatherActivity extends BaseActivity {
     private void setUpFragment() {
         hourfragment = (WeatherTodayFragment) getSupportFragmentManager().findFragmentById(R.id.weather_today_frag);
         predictionFragment = (PredictionFragment) getSupportFragmentManager().findFragmentById(R.id.weather_predi_frag);
+
+        nowPresenter = new NowPresenter(findViewById(R.id.now_container));
     }
 
     private void setUpToolBar(){
@@ -103,5 +110,13 @@ public class WeatherActivity extends BaseActivity {
     private void closeSearchView(SearchView searchView){
         searchView.setQuery("",false);
         searchView.setIconified(true);
+    }
+
+    @Override
+    public void setNowWeather(DayNowInfo info) {
+        if(null != nowPresenter)
+        {
+            nowPresenter.setWeather(info);
+        }
     }
 }

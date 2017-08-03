@@ -34,12 +34,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
-            <fragment
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/weather_today_frag"
-                class="com.newsing.activity.weather.today.WeatherTodayFragment"
-                />
+                <include
+                    layout="@layout/weather_now"
+                    />
+                <fragment
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/weather_today_frag"
+                    class="com.newsing.activity.weather.today.WeatherTodayFragment"
+                    />
 
             <fragment
                 android:layout_width="match_parent"

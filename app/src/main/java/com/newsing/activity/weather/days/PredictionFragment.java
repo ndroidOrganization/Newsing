@@ -1,5 +1,6 @@
 package com.newsing.activity.weather.days;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.newsing.R;
 import com.newsing.WeatherPredBinding;
+import com.newsing.activity.weather.today.ITodayCallback;
 import com.newsing.basic.BaseInterface;
 import com.newsing.utils.ConstValue;
 import com.newsing.utils.NetWorkUtils;
@@ -23,6 +25,14 @@ import com.newsing.utils.NetWorkUtils;
 
 public class PredictionFragment extends Fragment implements BaseInterface<String> {
     private WeatherPredBinding binding;
+
+    private ITodayCallback callback;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        callback = (ITodayCallback) activity;
+    }
 
     @Nullable
     @Override
@@ -61,6 +71,11 @@ public class PredictionFragment extends Fragment implements BaseInterface<String
             setItemText(body.getF6(),6);
             setItemText(body.getF7(),7);
             getView().setVisibility(View.VISIBLE);
+
+            if(callback != null)
+            {
+                callback.setNowWeather(body.getNow());
+            }
         }else if(body.getRet_code() == -1){
             Toast.makeText(getActivity(),"找不到地区",Toast.LENGTH_SHORT).show();
         }
